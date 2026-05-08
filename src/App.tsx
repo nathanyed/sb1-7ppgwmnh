@@ -18,14 +18,18 @@ export default function App(){
   const step1Valid=form.name&&form.phone&&form.email&&form.address;
   const step2Valid=form.make&&form.model&&form.year;
   const step3Valid=form.date&&form.time;
-  function handleSubmit(e:React.FormEvent){e.preventDefault();setSubmitted(true);}
+  function handleSubmit(e:React.FormEvent){
+    e.preventDefault();
+    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({'form-name':'booking',name:form.name,phone:form.phone,email:form.email,address:form.address,make:form.make,model:form.model,year:form.year,headlights:form.headlights,date:form.date,time:form.time,notes:form.notes}).toString()})
+      .finally(()=>setSubmitted(true));
+  }
   const navLinks=[{label:'Services',href:'#services'},{label:'How It Works',href:'#how-it-works'},{label:'Reviews',href:'#reviews'},{label:'FAQ',href:'#faq'},{label:'Book Now',href:'#booking'}];
   return(
     <div className="min-h-screen bg-zinc-950 text-white font-sans antialiased">
       <header className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-2"><Sparkles className="h-6 w-6 text-amber-400"/><span className="text-xl font-bold tracking-tight">Crystal<span className="text-amber-400">Clear</span> Ottawa</span></div>
+            <div className="flex items-center gap-2"><Sparkles className="h-6 w-6 text-amber-400"/><span className="text-xl font-bold tracking-tight">Shine My <span className="text-amber-400">Lights</span> Ottawa</span></div>
             <nav className="hidden md:flex items-center gap-8">{navLinks.slice(0,-1).map(l=><a key={l.href} href={l.href} className="text-sm text-zinc-400 hover:text-white transition-colors">{l.label}</a>)}</nav>
             <div className="hidden md:flex items-center gap-4"><a href={PHONE_HREF} className="flex items-center gap-2 text-amber-400 font-semibold hover:text-amber-300 transition-colors"><Phone className="h-4 w-4"/>{PHONE}</a><a href="#booking" className="bg-amber-400 text-zinc-950 text-sm font-bold px-5 py-2.5 rounded-lg hover:bg-amber-300 transition-all duration-200 hover:scale-105">Book Now</a></div>
             <button onClick={()=>setMenuOpen(v=>!v)} className="md:hidden p-2 text-zinc-400 hover:text-white">{menuOpen?<X className="h-6 w-6"/>:<Menu className="h-6 w-6"/>}</button>
@@ -89,7 +93,7 @@ export default function App(){
       <section className="py-24 bg-zinc-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <p className="text-amber-400 text-sm font-bold uppercase tracking-widest mb-3">Why CrystalClear Ottawa</p>
+            <p className="text-amber-400 text-sm font-bold uppercase tracking-widest mb-3">Why Shine My Lights Ottawa</p>
             <h2 className="text-4xl font-extrabold mb-6 leading-tight">The Professional Standard.<br/>At Your Front Door.</h2>
             <p className="text-zinc-400 text-lg leading-relaxed mb-8">Foggy headlights reduce light output by up to 80%, making night driving significantly more dangerous. We use a 5-step professional restoration system - the same process used by auto dealerships - and come directly to you.</p>
             <div className="space-y-4">{[{title:'Fully Mobile Service',desc:'We serve your driveway, parking lot, or office - anywhere in Ottawa.'},{title:'Professional-Grade Results',desc:'5-step system: sanding, polishing, and UV-protective coating for long-lasting clarity.'},{title:'Transparent Pricing',desc:'No hidden fees. What you see is what you pay - always.'},{title:'Satisfaction Guaranteed',desc:"Not satisfied? We'll redo it free. Your clarity is our reputation."}].map(({title,desc})=><div key={title} className="flex gap-4"><div className="w-6 h-6 rounded-full bg-amber-400/20 border border-amber-400/40 flex items-center justify-center flex-shrink-0 mt-0.5"><CheckCircle className="h-3.5 w-3.5 text-amber-400"/></div><div><p className="font-semibold text-white">{title}</p><p className="text-zinc-400 text-sm mt-0.5">{desc}</p></div></div>)}</div>
@@ -138,11 +142,11 @@ export default function App(){
       <footer className="bg-zinc-950 border-t border-zinc-800 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8 mb-10">
-            <div><div className="flex items-center gap-2 mb-4"><Sparkles className="h-5 w-5 text-amber-400"/><span className="text-lg font-bold">Crystal<span className="text-amber-400">Clear</span> Ottawa</span></div><p className="text-zinc-500 text-sm leading-relaxed">Professional mobile headlight restoration serving Ottawa and surrounding areas. We come to you.</p></div>
+            <div><div className="flex items-center gap-2 mb-4"><Sparkles className="h-5 w-5 text-amber-400"/><span className="text-lg font-bold">Shine My <span className="text-amber-400">Lights</span> Ottawa</span></div><p className="text-zinc-500 text-sm leading-relaxed">Professional mobile headlight restoration serving Ottawa and surrounding areas. We come to you.</p></div>
             <div><h4 className="font-bold text-white mb-4">Quick Links</h4><ul className="space-y-2 text-zinc-500 text-sm">{navLinks.map(l=><li key={l.href}><a href={l.href} className="hover:text-amber-400 transition-colors">{l.label}</a></li>)}</ul></div>
             <div><h4 className="font-bold text-white mb-4">Contact</h4><div className="space-y-3 text-sm"><a href={PHONE_HREF} className="flex items-center gap-2 text-zinc-400 hover:text-amber-400 transition-colors"><Phone className="h-4 w-4 text-amber-400"/> {PHONE}</a><div className="flex items-start gap-2 text-zinc-400"><MapPin className="h-4 w-4 text-amber-400 mt-0.5 flex-shrink-0"/><span>Ottawa, ON and surrounding area<br/>Kanata - Barrhaven - Orleans - Nepean - Gloucester</span></div><div className="flex items-center gap-2 text-zinc-400"><Clock className="h-4 w-4 text-amber-400"/> Mon-Sat 8:00 AM to 6:00 PM</div></div></div>
           </div>
-          <div className="border-t border-zinc-800 pt-8 text-center text-zinc-600 text-sm">2025 CrystalClear Ottawa. All rights reserved.</div>
+          <div className="border-t border-zinc-800 pt-8 text-center text-zinc-600 text-sm">2025 Shine My Lights Ottawa. All rights reserved.</div>
         </div>
       </footer>
     </div>
