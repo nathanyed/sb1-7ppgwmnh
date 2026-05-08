@@ -18,10 +18,26 @@ export default function App(){
   const step1Valid=form.name&&form.phone&&form.email&&form.address;
   const step2Valid=form.make&&form.model&&form.year;
   const step3Valid=form.date&&form.time;
-  function handleSubmit(e:React.FormEvent){
+   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({'form-name':'booking',name:form.name,phone:form.phone,email:form.email,address:form.address,make:form.make,model:form.model,year:form.year,headlights:form.headlights,date:form.date,time:form.time,notes:form.notes}).toString()})
-      .finally(()=>setSubmitted(true));
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        'form-name': 'booking',
+        name: form.name,
+        phone: form.phone,
+        email: form.email,
+        address: form.address,
+        make: form.make,
+        model: form.model,
+        year: form.year,
+        headlights: form.headlights,
+        date: form.date,
+        time: form.time,
+        notes: form.notes,
+      }).toString(),
+    }).finally(() => setSubmitted(true));
   }
   const navLinks=[{label:'Services',href:'#services'},{label:'How It Works',href:'#how-it-works'},{label:'Reviews',href:'#reviews'},{label:'FAQ',href:'#faq'},{label:'Book Now',href:'#booking'}];
   return(
