@@ -133,4 +133,18 @@ export default function App(){
       </section>
       <section className="py-20 bg-gradient-to-r from-amber-500 to-amber-400 relative overflow-hidden">
         <div className="absolute inset-0 bg-black/10"/>
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><h2 className="text-4xl font-extrabold text-zinc-950 mb-4">Ready for Crystal-Clear Headlights?</h2><p className="text-zinc-800 text-lg mb-8">Book online or call us - we'll be at your door, anywhere in Ottawa.</p><div className="flex flex-col sm:flex-row gap-4 justify-center"><a href="#booking" className="bg-zinc-950 text-white font-bold px-8 py-4 rounded-xl hover:bg-zinc-800 transition-all duration-200 hover:scale-105 flex items-center justify-center gap-2"><Calendar className="h-5 w-5"/> Book Online</a><a href={PHONE_HREF} className="border-2 border-zinc-950 text-zinc-950 font-bold px-8 py-4 rounded-xl hover:bg-zinc-950/
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><h2 className="text-4xl font-extrabold text-zinc-950 mb-4">Ready for Crystal-Clear Headlights?</h2><p className="text-zinc-800 text-lg mb-8">Book online or call us - we'll be at your door, anywhere in Ottawa.</p><div className="flex flex-col sm:flex-row gap-4 justify-center"><a href="#booking" className="bg-zinc-950 text-white font-bold px-8 py-4 rounded-xl hover:bg-zinc-800 transition-all duration-200 hover:scale-105 flex items-center justify-center gap-2"><Calendar className="h-5 w-5"/> Book Online</a><a href={PHONE_HREF} className="border-2 border-zinc-950 text-zinc-950 font-bold px-8 py-4 rounded-xl hover:bg-zinc-950/10 transition-all duration-200 flex items-center justify-center gap-2"><Phone className="h-5 w-5"/> {PHONE}</a></div></div>
+      </section>
+      <footer className="bg-zinc-950 border-t border-zinc-800 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-8 mb-10">
+            <div><div className="flex items-center gap-2 mb-4"><Sparkles className="h-5 w-5 text-amber-400"/><span className="text-lg font-bold">Crystal<span className="text-amber-400">Clear</span> Ottawa</span></div><p className="text-zinc-500 text-sm leading-relaxed">Professional mobile headlight restoration serving Ottawa and surrounding areas. We come to you.</p></div>
+            <div><h4 className="font-bold text-white mb-4">Quick Links</h4><ul className="space-y-2 text-zinc-500 text-sm">{navLinks.map(l=><li key={l.href}><a href={l.href} className="hover:text-amber-400 transition-colors">{l.label}</a></li>)}</ul></div>
+            <div><h4 className="font-bold text-white mb-4">Contact</h4><div className="space-y-3 text-sm"><a href={PHONE_HREF} className="flex items-center gap-2 text-zinc-400 hover:text-amber-400 transition-colors"><Phone className="h-4 w-4 text-amber-400"/> {PHONE}</a><div className="flex items-start gap-2 text-zinc-400"><MapPin className="h-4 w-4 text-amber-400 mt-0.5 flex-shrink-0"/><span>Ottawa, ON and surrounding area<br/>Kanata - Barrhaven - Orleans - Nepean - Gloucester</span></div><div className="flex items-center gap-2 text-zinc-400"><Clock className="h-4 w-4 text-amber-400"/> Mon-Sat 8:00 AM to 6:00 PM</div></div></div>
+          </div>
+          <div className="border-t border-zinc-800 pt-8 text-center text-zinc-600 text-sm">2025 CrystalClear Ottawa. All rights reserved.</div>
+        </div>
+      </footer>
+    </div>
+  );
+}
