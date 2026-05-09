@@ -375,7 +375,7 @@ export default function App() {
         <div className="absolute inset-0 bg-black/10"/>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-extrabold text-zinc-950 mb-4">Ready for Crystal-Clear Headlights?</h2>
-          <p className="text-zinc-800 text-lg mb-8">Book online or call us — we'll be at your door, anywhere in Ottawa.</p>
+          <p className="text-zinc-800 text-lg mb-8">Book online or call us we'll be at your door, anywhere in Ottawa.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#booking" className="bg-zinc-950 text-white font-bold px-8 py-4 rounded-xl hover:bg-zinc-800 transition-all duration-200 hover:scale-105 flex items-center justify-center gap-2"><Calendar className="h-5 w-5"/> Book Online</a>
             <a href={PHONE_HREF} className="border-2 border-zinc-950 text-zinc-950 font-bold px-8 py-4 rounded-xl hover:bg-zinc-950/10 transition-all duration-200 flex items-center justify-center gap-2"><Phone className="h-5 w-5"/> {PHONE}</a>
