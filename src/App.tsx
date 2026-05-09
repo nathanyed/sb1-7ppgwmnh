@@ -108,7 +108,7 @@ export default function App() {
               <MapPin className="h-3.5 w-3.5"/> Mobile Service · All of Ottawa
             </div>
             <h1 className="text-5xl lg:text-6xl font-extrabold leading-tight mb-6 tracking-tight">See Clearly.<br/><span className="text-amber-400">Drive Safely.</span></h1>
-            <p className="text-zinc-400 text-xl leading-relaxed mb-8 max-w-lg">Professional headlight restoration that brings foggy, yellowed lenses back to showroom clarity — at your door, anywhere in Ottawa.</p>
+            <p className="text-zinc-400 text-xl leading-relaxed mb-8 max-w-lg">Professional headlight restoration that brings foggy, yellowed lenses back to showroom clarity at your door, anywhere in Ottawa.</p>
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
               <a href="#booking" className="bg-amber-400 text-zinc-950 font-bold px-8 py-4 rounded-xl text-lg hover:bg-amber-300 transition-all duration-200 hover:scale-105 flex items-center justify-center gap-2 shadow-lg shadow-amber-400/20">Book Your Appointment <ArrowRight className="h-5 w-5"/></a>
               <a href={PHONE_HREF} className="border border-zinc-700 text-white font-semibold px-8 py-4 rounded-xl text-lg hover:border-amber-400/50 hover:bg-zinc-800 transition-all duration-200 flex items-center justify-center gap-2"><Phone className="h-5 w-5 text-amber-400"/> Call Now</a>
