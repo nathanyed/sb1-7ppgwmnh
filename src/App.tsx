@@ -316,4 +316,5 @@ export default function App() {
               },
             ].map(pkg => (
               <div key={pkg.name}
-                className={`relative rounded-2xl p-8 border transition
+                className={`relative rounded-2xl p-8 border transition-all duration-300 hover:scale-105 ${
+                  
