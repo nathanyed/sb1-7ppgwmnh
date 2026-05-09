@@ -74,7 +74,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">
-              <img src="/public/logo.png" alt="Shine My Lights Headlight Restoration" className="h-10 w-auto" />
+              <div className="flex items-center gap-2 mb-4"><Sparkles className="h-5 w-5 text-amber-400"/><span className="text-lg font-bold">Shine My <span className="text-amber-400">Lights</span> Headlight Restoration</span></div>
             </div>
             <nav className="hidden md:flex items-center gap-8">
               {navLinks.slice(0,-1).map(l=>(
