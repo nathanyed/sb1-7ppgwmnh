@@ -1,4 +1,4 @@
-$ sed -n '403,868p' /home/user/sb1-7ppgwmnh/src/App.tsx
+
 
       {/* ── WHY US ── */}
       <section className="py-24 bg-zinc-900">
