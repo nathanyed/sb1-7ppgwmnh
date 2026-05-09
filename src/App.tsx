@@ -15,7 +15,7 @@ const timeSlots = [
 
 const faqs = [
   { q: 'How long does the restoration take?', a: 'Most jobs take 45–90 minutes per vehicle, depending on the severity of oxidation and the number of headlights being restored.' },
-  { q: 'Do you come to my location?', a: 'Yes — we are a fully mobile service covering the entire Ottawa area. We come to your home, office, or wherever is most convenient for you.' },
+  { q: 'Do you come to my location?', a: 'Yes, we are a fully mobile service covering the entire Ottawa area. We come to your home, office, or wherever is most convenient for you.' },
   { q: 'How long will the results last?', a: 'Our professional-grade UV-protective coating keeps lenses clear for 2–3 years under normal conditions. We use the same multi-step process used by dealerships.' },
   { q: 'Is headlight restoration worth it vs. replacement?', a: 'Absolutely. New OEM headlights can cost $300–$1,000+ per side. Our restoration service delivers like-new clarity at a fraction of the cost.' },
   { q: 'Will restoration work on severely yellowed headlights?', a: 'In most cases, yes. We can restore headlights that are heavily yellowed, foggy, or hazed. If the damage is internal or the lens is cracked, we will let you know upfront.' },
@@ -159,7 +159,7 @@ export default function App() {
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {name:'Single',price:'$59',desc:'One headlight restored to like-new condition.',features:['Multi-stage wet sanding','Machine polish','UV sealant coat','1-year protection'],highlight:false},
-              {name:'Full Set',price:'$99',desc:'Both headlights — our most popular package.',features:['Multi-stage wet sanding','Machine polish','UV sealant coat','2-year protection','Free touch-up within 30 days'],highlight:true},
+              {name:'Full Set',price:'$99',desc:'Both headlights our most popular package.',features:['Multi-stage wet sanding','Machine polish','UV sealant coat','2-year protection','Free touch-up within 30 days'],highlight:true},
               {name:'Full Set + Fog Lights',price:'$139',desc:'Headlights and fog lights for maximum visibility.',features:['Everything in Full Set','Fog light restoration','UV sealant coat','2-year protection','Free touch-up within 30 days'],highlight:false},
             ].map(pkg=>(
               <div key={pkg.name} className={`relative rounded-2xl p-8 border transition-all duration-300 hover:scale-105 ${pkg.highlight?'bg-amber-400 border-amber-300 text-zinc-950 shadow-2xl shadow-amber-400/30':'bg-zinc-800 border-zinc-700 hover:border-amber-400/40'}`}>
@@ -187,7 +187,7 @@ export default function App() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {step:'01',icon:Calendar,title:'Book Online',desc:"Pick a date and time that works for you. We'll confirm within the hour."},
-              {step:'02',icon:Car,title:'We Come to You',desc:'Our technician arrives at your home or office anywhere in Ottawa — no drop-off needed.'},
+              {step:'02',icon:Car,title:'We Come to You',desc:'Our technician arrives at your home or office anywhere in Ottawa, no drop-off needed.'},
               {step:'03',icon:Sparkles,title:'Drive Clear',desc:'In under 90 minutes, your headlights are restored and protected. Safer driving starts today.'},
             ].map(({step,icon:Icon,title,desc})=>(
               <div key={step} className="relative bg-zinc-900 border border-zinc-800 rounded-2xl p-8 text-center hover:border-amber-400/30 transition-colors">
@@ -206,12 +206,12 @@ export default function App() {
           <div>
             <p className="text-amber-400 text-sm font-bold uppercase tracking-widest mb-3">Why Shine My Lights Headlight Restoration</p>
             <h2 className="text-4xl font-extrabold mb-6 leading-tight">The Professional Standard.<br/>At Your Front Door.</h2>
-            <p className="text-zinc-400 text-lg leading-relaxed mb-8">Foggy headlights reduce light output by up to 80%, making night driving significantly more dangerous. We use a 5-step professional restoration system — the same process used by auto dealerships — and come directly to you.</p>
+            <p className="text-zinc-400 text-lg leading-relaxed mb-8">Foggy headlights reduce light output by up to 80%, making night driving significantly more dangerous. We use a 5-step professional restoration system, the same process used by auto dealerships, and come directly to you.</p>
             <div className="space-y-4">
               {[
-                {title:'Fully Mobile Service',desc:'We serve your driveway, parking lot, or office — anywhere in Ottawa.'},
+                {title:'Fully Mobile Service',desc:'We serve your driveway, parking lot, or office, anywhere in Ottawa.'},
                 {title:'Professional-Grade Results',desc:'5-step system: sanding, polishing, and UV-protective coating for long-lasting clarity.'},
-                {title:'Transparent Pricing',desc:'No hidden fees. What you see is what you pay — always.'},
+                {title:'Transparent Pricing',desc:'No hidden fees. What you see is what you pay, always.'},
                 {title:'Satisfaction Guaranteed',desc:"Not satisfied? We'll redo it free. Your clarity is our reputation."},
               ].map(({title,desc})=>(
                 <div key={title} className="flex gap-4">
