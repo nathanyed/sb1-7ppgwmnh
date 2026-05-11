@@ -122,19 +122,15 @@ export default function App() {
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl">
               <div className="grid grid-cols-2 divide-x divide-zinc-800">
                 <div className="p-6 text-center">
-                  <div className="text-xs font-bold uppercase tracking-widest text-red-400 mb-4">Before</div>
-                  <div className="w-full aspect-square rounded-xl bg-gradient-to-br from-yellow-900/60 via-yellow-800/40 to-zinc-800 flex items-center justify-center mb-4">
-                    <div className="w-24 h-16 rounded-lg bg-gradient-to-br from-yellow-700/80 to-yellow-900/80 flex items-center justify-center shadow-inner"><div className="w-14 h-10 rounded bg-yellow-800/60 blur-sm"/></div>
-                  </div>
-                  <p className="text-zinc-500 text-sm">Yellowed · Foggy · Hazed</p>
-                </div>
-                <div className="p-6 text-center bg-zinc-900/50">
-                  <div className="text-xs font-bold uppercase tracking-widest text-amber-400 mb-4">After</div>
-                  <div className="w-full aspect-square rounded-xl bg-gradient-to-br from-amber-400/20 via-amber-300/10 to-zinc-800 flex items-center justify-center mb-4">
-                    <div className="w-24 h-16 rounded-lg bg-gradient-to-br from-amber-300/60 to-amber-500/40 flex items-center justify-center shadow-lg shadow-amber-400/30"><div className="w-14 h-10 rounded bg-amber-200/30"/></div>
-                  </div>
-                  <p className="text-zinc-300 text-sm">Crystal Clear · Protected</p>
-                </div>
+  <div className="text-xs font-bold uppercase tracking-widest text-red-400 mb-4">Before</div>
+  <img src="/headlight_before.png" alt="Before headlight restoration" className="w-full aspect-square object-cover rounded-xl mb-4" />
+  <p className="text-zinc-500 text-sm">Yellowed · Foggy · Hazed</p>
+</div>
+<div className="p-6 text-center bg-zinc-900/50">
+  <div className="text-xs font-bold uppercase tracking-widest text-amber-400 mb-4">After</div>
+  <img src="/headlight_after.png" alt="After headlight restoration" className="w-full aspect-square object-cover rounded-xl mb-4" />
+  <p className="text-zinc-300 text-sm">Crystal Clear · Protected</p>
+</div>
               </div>
               <div className="border-t border-zinc-800 p-4 flex items-center justify-center gap-2 text-sm">
                 <CheckCircle className="h-4 w-4 text-amber-400"/><span className="text-zinc-400">Results guaranteed or we redo it free</span>
