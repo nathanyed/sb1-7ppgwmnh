@@ -1,26 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   Phone, MapPin, CheckCircle, ChevronRight, Star, Menu, X,
   Clock, Shield, Zap, Car, Calendar, ChevronDown, ChevronUp,
   ArrowRight, Sparkles
 } from 'lucide-react';
 
-const PHONE = '647-222-6285'; 
+const PHONE = '647-222-6285';
 const PHONE_HREF = 'tel:6472226285';
 
-const timeSlots = [  
+const timeSlots = [
   '8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM',
   '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM',
 ];
 
 const faqs = [
-  { q: 'How long does the restoration take?', a: 'Most jobs take 45–90 minutes per vehicle, depending on the severity of oxidation and the number of headlights being restored.' },
+  { q: 'How long does the restoration take?', a: 'Most jobs take 45-90 minutes per vehicle, depending on the severity of oxidation and the number of headlights being restored.' },
   { q: 'Do you come to my location?', a: 'Yes, we are a fully mobile service covering the entire Ottawa area. We come to your home, office, or wherever is most convenient for you.' },
-  { q: 'How long will the results last?', a: 'Our professional-grade UV-protective coating keeps lenses clear for 2–3 years under normal conditions. We use the same multi-step process used by dealerships.' },
-  { q: 'Is headlight restoration worth it vs. replacement?', a: 'Absolutely. New OEM headlights can cost $300–$1,000+ per side. Our restoration service delivers like-new clarity at a fraction of the cost.' },
+  { q: 'How long will the results last?', a: 'Our professional-grade UV-protective coating keeps lenses clear for 2-3 years under normal conditions. We use the same multi-step process used by dealerships.' },
+  { q: 'Is headlight restoration worth it vs. replacement?', a: 'Absolutely. New OEM headlights can cost $300-$1,000+ per side. Our restoration service delivers like-new clarity at a fraction of the cost.' },
   { q: 'Will restoration work on severely yellowed headlights?', a: 'In most cases, yes. We can restore headlights that are heavily yellowed, foggy, or hazed. If the damage is internal or the lens is cracked, we will let you know upfront.' },
   { q: 'What areas do you serve?', a: 'We serve all of Ottawa and surrounding areas including Kanata, Barrhaven, Orleans, Gloucester, Nepean, and beyond.' },
 ];
+
+const CAR_DATA: Record<string, string[]> = {
+  'Acura': ['ILX', 'MDX', 'RDX', 'RLX', 'TLX'],
+  'Audi': ['A3', 'A4', 'A6', 'Q3', 'Q5', 'Q7', 'Q8', 'TT'],
+  'BMW': ['1 Series', '2 Series', '3 Series', '4 Series', '5 Series', '7 Series', 'X1', 'X3', 'X5', 'X7'],
+  'Buick': ['Enclave', 'Encore', 'Encore GX', 'Envision'],
+  'Cadillac': ['CT4', 'CT5', 'Escalade', 'XT4', 'XT5', 'XT6'],
+  'Chevrolet': ['Blazer', 'Colorado', 'Equinox', 'Impala', 'Malibu', 'Silverado 1500', 'Silverado 2500', 'Suburban', 'Tahoe', 'Traverse', 'Trax'],
+  'Chrysler': ['300', 'Pacifica', 'Voyager'],
+  'Dodge': ['Challenger', 'Charger', 'Durango', 'Grand Caravan', 'Journey'],
+  'Ford': ['Bronco', 'Edge', 'Escape', 'Expedition', 'Explorer', 'F-150', 'F-250', 'Focus', 'Fusion', 'Maverick', 'Mustang', 'Ranger'],
+  'GMC': ['Acadia', 'Canyon', 'Sierra 1500', 'Sierra 2500', 'Terrain', 'Yukon'],
+  'Honda': ['Accord', 'Civic', 'CR-V', 'Fit', 'HR-V', 'Odyssey', 'Passport', 'Pilot', 'Ridgeline'],
+  'Hyundai': ['Elantra', 'Ioniq 5', 'Ioniq 6', 'Kona', 'Palisade', 'Santa Fe', 'Sonata', 'Tucson', 'Venue'],
+  'Infiniti': ['Q50', 'Q60', 'QX50', 'QX60', 'QX80'],
+  'Jeep': ['Cherokee', 'Compass', 'Gladiator', 'Grand Cherokee', 'Renegade', 'Wrangler'],
+  'Kia': ['Carnival', 'EV6', 'Forte', 'K5', 'Niro', 'Seltos', 'Soul', 'Sorento', 'Sportage', 'Stinger', 'Telluride'],
+  'Land Rover': ['Defender', 'Discovery', 'Range Rover', 'Range Rover Sport', 'Range Rover Velar'],
+  'Lexus': ['ES', 'GX', 'IS', 'LS', 'LX', 'NX', 'RX', 'UX'],
+  'Lincoln': ['Aviator', 'Corsair', 'Nautilus', 'Navigator'],
+  'Mazda': ['CX-30', 'CX-5', 'CX-50', 'CX-9', 'Mazda3', 'Mazda6', 'MX-5 Miata'],
+  'Mercedes-Benz': ['A-Class', 'C-Class', 'E-Class', 'GLA', 'GLB', 'GLC', 'GLE', 'GLS', 'S-Class'],
+  'Mitsubishi': ['Eclipse Cross', 'Mirage', 'Outlander', 'RVR'],
+  'Nissan': ['Altima', 'Armada', 'Frontier', 'Kicks', 'Murano', 'Pathfinder', 'Rogue', 'Sentra', 'Versa'],
+  'Pontiac': ['Bonneville', 'G6', 'Grand Am', 'Grand Prix', 'Vibe'],
+  'Porsche': ['911', 'Cayenne', 'Macan', 'Panamera', 'Taycan'],
+  'RAM': ['1500', '2500', '3500', 'ProMaster'],
+  'Saturn': ['Aura', 'Ion', 'Vue'],
+  'Subaru': ['Ascent', 'BRZ', 'Crosstrek', 'Forester', 'Impreza', 'Legacy', 'Outback', 'WRX'],
+  'Tesla': ['Model 3', 'Model S', 'Model X', 'Model Y'],
+  'Toyota': ['4Runner', 'Avalon', 'C-HR', 'Camry', 'Corolla', 'GR86', 'Highlander', 'Prius', 'RAV4', 'Sequoia', 'Sienna', 'Tacoma', 'Tundra', 'Venza', 'Yaris'],
+  'Volkswagen': ['Atlas', 'Golf', 'ID.4', 'Jetta', 'Passat', 'Taos', 'Tiguan'],
+  'Volvo': ['S60', 'S90', 'V60', 'XC40', 'XC60', 'XC90'],
+  'Other': ['Other'],
+};
+
+const CAR_MAKES = Object.keys(CAR_DATA).sort();
+const CUR_YEAR = new Date().getFullYear();
+const YEARS = Array.from({ length: CUR_YEAR + 2 - 1980 }, (_, i) => String(CUR_YEAR + 1 - i));
 
 type BookingStep = 1 | 2 | 3 | 4;
 interface FormData { name:string; phone:string; email:string; address:string; make:string; model:string; year:string; headlights:string; date:string; time:string; notes:string; }
@@ -31,10 +70,10 @@ const validators: Partial<Record<keyof FormData,(v:string)=>string>> = {
   name: v => v.trim().length < 2 ? 'Please enter your full name.' : '',
   phone: v => /^[\d\s\-().+]{7,15}$/.test(v.trim()) ? '' : 'Enter a valid phone number (e.g. 613-555-1234).',
   email: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? '' : 'Enter a valid email address.',
-  address: v => v.trim().length < 5 ? 'Enter your full service address.' : '',
-  make: v => v.trim().length < 2 ? 'Enter the vehicle make (e.g. Toyota).' : '',
-  model: v => v.trim().length < 1 ? 'Enter the vehicle model (e.g. Camry).' : '',
-  year: v => /^\d{4}$/.test(v) && +v >= 1980 && +v <= new Date().getFullYear()+1 ? '' : `Enter a valid year between 1980 and ${new Date().getFullYear()+1}.`,
+  address: v => v.trim().length < 5 ? 'Enter your service address.' : '',
+  make: v => v ? '' : 'Please select a vehicle make.',
+  model: v => v ? '' : 'Please select a vehicle model.',
+  year: v => v ? '' : 'Please select a year.',
   date: v => v && v >= getMinDate() ? '' : 'Please select a date starting from tomorrow.',
 };
 
@@ -45,6 +84,9 @@ export default function App() {
   const [touched, setTouched] = useState<Partial<Record<keyof FormData,boolean>>>({});
   const [openFaq, setOpenFaq] = useState<number|null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [addrSuggestions, setAddrSuggestions] = useState<string[]>([]);
+  const [showAddrDrop, setShowAddrDrop] = useState(false);
+  const addrTimer = useRef<ReturnType<typeof setTimeout>|null>(null);
 
   const update = (f:keyof FormData, v:string) => setForm(p=>({...p,[f]:v}));
   const touch = (f:keyof FormData) => setTouched(p=>({...p,[f]:true}));
@@ -53,11 +95,41 @@ export default function App() {
     const err=errorFor(f); const ok=touched[f]&&!err&&form[f];
     return `w-full bg-zinc-700 border rounded-lg px-4 py-3 text-white placeholder-zinc-500 focus:outline-none transition-colors ${err?'border-red-500 focus:border-red-400':ok?'border-green-500 focus:border-green-400':'border-zinc-600 focus:border-amber-400'}`;
   };
+  const selectClass = (f:keyof FormData) => {
+    const err=errorFor(f); const ok=touched[f]&&!err&&form[f];
+    return `w-full bg-zinc-700 border rounded-lg px-4 py-3 text-white focus:outline-none transition-colors appearance-none cursor-pointer ${err?'border-red-500 focus:border-red-400':ok?'border-green-500 focus:border-green-400':'border-zinc-600 focus:border-amber-400'}`;
+  };
   const isValid = (f:keyof FormData) => !validators[f] || validators[f]!(form[f])==='';
   const step1Valid = isValid('name')&&isValid('phone')&&isValid('email')&&isValid('address');
   const step2Valid = isValid('make')&&isValid('model')&&isValid('year');
   const step3Valid = isValid('date')&&!!form.time;
   function touchStep(fields:(keyof FormData)[]) { setTouched(p=>Object.fromEntries([...Object.entries(p),...fields.map(f=>[f,true])])); }
+
+  function handleAddrInput(v: string) {
+    update('address', v);
+    if (addrTimer.current) clearTimeout(addrTimer.current);
+    if (v.length < 4) { setAddrSuggestions([]); setShowAddrDrop(false); return; }
+    addrTimer.current = setTimeout(async () => {
+      try {
+        const res = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(v + ', Ottawa, ON')}&format=json&limit=5&countrycodes=ca&addressdetails=1`);
+        const data: any[] = await res.json();
+        const formatted = data.map(d => {
+          const a = d.address ?? {};
+          return [a.house_number, a.road, a.city||a.town||a.village, a.state, a.postcode].filter(Boolean).join(', ');
+        }).filter(Boolean);
+        setAddrSuggestions(formatted);
+        setShowAddrDrop(formatted.length > 0);
+      } catch {}
+    }, 500);
+  }
+
+  function selectAddr(s: string) {
+    update('address', s);
+    touch('address');
+    setShowAddrDrop(false);
+    setAddrSuggestions([]);
+  }
+
   function handleSubmit(e:React.FormEvent) {
     e.preventDefault();
     fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({'form-name':'booking',name:form.name,phone:form.phone,email:form.email,address:form.address,make:form.make,model:form.model,year:form.year,headlights:form.headlights,date:form.date,time:form.time,notes:form.notes}).toString()}).finally(()=>setSubmitted(true));
@@ -74,7 +146,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">
-              <img src="/logo.png" alt="logo" className="h-8 w-auto" />
+              <img src="/logo.png" alt="Shine My Lights Headlight Restoration" className="h-8 w-auto" />
             </div>
             <nav className="hidden md:flex items-center gap-8">
               {navLinks.slice(0,-1).map(l=>(
@@ -104,16 +176,16 @@ export default function App() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <div className="inline-flex items-center gap-2 bg-amber-400/10 border border-amber-400/20 text-amber-400 text-sm font-medium px-4 py-2 rounded-full mb-8">
-              <MapPin className="h-3.5 w-3.5"/> Mobile Service · All of Ottawa
+              <Star className="h-3.5 w-3.5 fill-amber-400"/> Ottawa's Best Headlight Restoration
             </div>
             <h1 className="text-5xl lg:text-6xl font-extrabold leading-tight mb-6 tracking-tight">See Clearly.<br/><span className="text-amber-400">Drive Safely.</span></h1>
-            <p className="text-zinc-400 text-xl leading-relaxed mb-8 max-w-lg">Professional headlight restoration that brings foggy, yellowed lenses back to showroom clarity at your door, anywhere in Ottawa.</p>
+            <p className="text-zinc-400 text-xl leading-relaxed mb-8 max-w-lg">Ottawa's top-rated mobile headlight restoration service. We bring foggy, yellowed lenses back to showroom clarity at your door.</p>
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
               <a href="#booking" className="bg-amber-400 text-zinc-950 font-bold px-8 py-4 rounded-xl text-lg hover:bg-amber-300 transition-all duration-200 hover:scale-105 flex items-center justify-center gap-2 shadow-lg shadow-amber-400/20">Book Your Appointment <ArrowRight className="h-5 w-5"/></a>
               <a href={PHONE_HREF} className="border border-zinc-700 text-white font-semibold px-8 py-4 rounded-xl text-lg hover:border-amber-400/50 hover:bg-zinc-800 transition-all duration-200 flex items-center justify-center gap-2"><Phone className="h-5 w-5 text-amber-400"/> Call Now</a>
             </div>
             <div className="flex flex-wrap gap-6">
-              {[{icon:Shield,label:'UV Coating Included'},{icon:Car,label:'We Come to You'},{icon:Clock,label:'45–90 Min Service'}].map(({icon:Icon,label})=>(
+              {[{icon:Shield,label:'UV Coating Included'},{icon:Car,label:'We Come to You'},{icon:Clock,label:'45-90 Min Service'}].map(({icon:Icon,label})=>(
                 <div key={label} className="flex items-center gap-2 text-zinc-400 text-sm"><Icon className="h-4 w-4 text-amber-400"/>{label}</div>
               ))}
             </div>
@@ -122,15 +194,15 @@ export default function App() {
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl">
               <div className="grid grid-cols-2 divide-x divide-zinc-800">
                 <div className="p-6 text-center">
-  <div className="text-xs font-bold uppercase tracking-widest text-red-400 mb-4">Before</div>
-  <img src="/headlight_before.png" alt="Before headlight restoration" className="w-full aspect-square object-cover rounded-xl mb-4" />
-  <p className="text-zinc-500 text-sm">Yellowed · Foggy · Hazed</p>
-</div>
-<div className="p-6 text-center bg-zinc-900/50">
-  <div className="text-xs font-bold uppercase tracking-widest text-amber-400 mb-4">After</div>
-  <img src="/headlight_after.png" alt="After headlight restoration" className="w-full aspect-square object-cover rounded-xl mb-4" />
-  <p className="text-zinc-300 text-sm">Crystal Clear · Protected</p>
-</div>
+                  <div className="text-xs font-bold uppercase tracking-widest text-red-400 mb-4">Before</div>
+                  <img src="/headlight_before.png" alt="Before headlight restoration" className="w-full h-48 object-cover rounded-xl mb-4"/>
+                  <p className="text-zinc-500 text-sm">Yellowed, Foggy, Hazed</p>
+                </div>
+                <div className="p-6 text-center bg-zinc-900/50">
+                  <div className="text-xs font-bold uppercase tracking-widest text-amber-400 mb-4">After</div>
+                  <img src="/headlight_after.png" alt="After headlight restoration" className="w-full h-48 object-cover rounded-xl mb-4"/>
+                  <p className="text-zinc-300 text-sm">Crystal Clear, Protected</p>
+                </div>
               </div>
               <div className="border-t border-zinc-800 p-4 flex items-center justify-center gap-2 text-sm">
                 <CheckCircle className="h-4 w-4 text-amber-400"/><span className="text-zinc-400">Results guaranteed or we redo it free</span>
@@ -148,15 +220,14 @@ export default function App() {
       <section id="services" className="py-24 bg-zinc-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <p className="text-amber-400 text-sm font-bold uppercase tracking-widest mb-3">What We Offer</p>
+            <p className="text-amber-400 text-sm font-bold uppercase tracking-widest mb-3">Ottawa's Best</p>
             <h2 className="text-4xl font-extrabold mb-4">Restoration Packages</h2>
             <p className="text-zinc-400 text-lg max-w-2xl mx-auto">Every package includes multi-stage sanding, polishing, and a UV-protective clear coat.</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {[
-              {name:'Single',price:'$59',desc:'One headlight restored to like-new condition.',features:['Multi-stage wet sanding','Machine polish','UV sealant coat','1-year protection'],highlight:false},
-              {name:'Full Set',price:'$99',desc:'Both headlights our most popular package.',features:['Multi-stage wet sanding','Machine polish','UV sealant coat','2-year protection','Free touch-up within 30 days'],highlight:true},
-              {name:'Full Set + Fog Lights',price:'$139',desc:'Headlights and fog lights for maximum visibility.',features:['Everything in Full Set','Fog light restoration','UV sealant coat','2-year protection','Free touch-up within 30 days'],highlight:false},
+              {name:'Single Headlight',price:'$59',desc:'One headlight restored to like-new condition.',features:['Multi-stage wet sanding','Machine polish','UV sealant coat','1-year protection'],highlight:false},
+              {name:'Full Set',price:'$99',desc:'Both headlights, our most popular package.',features:['Multi-stage wet sanding','Machine polish','UV sealant coat','2-year protection','Free touch-up within 30 days'],highlight:true},
             ].map(pkg=>(
               <div key={pkg.name} className={`relative rounded-2xl p-8 border transition-all duration-300 hover:scale-105 ${pkg.highlight?'bg-amber-400 border-amber-300 text-zinc-950 shadow-2xl shadow-amber-400/30':'bg-zinc-800 border-zinc-700 hover:border-amber-400/40'}`}>
                 {pkg.highlight&&(<div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-zinc-950 text-amber-400 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full border border-amber-400/40">Most Popular</div>)}
@@ -200,8 +271,8 @@ export default function App() {
       <section className="py-24 bg-zinc-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <p className="text-amber-400 text-sm font-bold uppercase tracking-widest mb-3">Why Shine My Lights Headlight Restoration</p>
-            <h2 className="text-4xl font-extrabold mb-6 leading-tight">The Professional Standard.<br/>At Your Front Door.</h2>
+            <p className="text-amber-400 text-sm font-bold uppercase tracking-widest mb-3">Why Ottawa Chooses Us</p>
+            <h2 className="text-4xl font-extrabold mb-6 leading-tight">Ottawa's Best.<br/>At Your Front Door.</h2>
             <p className="text-zinc-400 text-lg leading-relaxed mb-8">Foggy headlights reduce light output by up to 80%, making night driving significantly more dangerous. We use a 5-step professional restoration system, the same process used by auto dealerships, and come directly to you.</p>
             <div className="space-y-4">
               {[
@@ -218,7 +289,7 @@ export default function App() {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            {[{value:'200+',label:'Vehicles Restored'},{value:'5★',label:'Average Rating'},{value:'2–3yr',label:'Coating Lifespan'},{value:'$0',label:'Travel Fee'}].map(({value,label})=>(
+            {[{value:'200+',label:'Vehicles Restored'},{value:'5★',label:'Average Rating'},{value:'2-3yr',label:'Coating Lifespan'},{value:'$0',label:'Travel Fee'}].map(({value,label})=>(
               <div key={label} className="bg-zinc-800 border border-zinc-700 rounded-2xl p-8 text-center hover:border-amber-400/30 transition-colors">
                 <div className="text-4xl font-extrabold text-amber-400 mb-2">{value}</div>
                 <div className="text-zinc-400 text-sm">{label}</div>
@@ -282,21 +353,74 @@ export default function App() {
                       <div><label className="block text-sm font-medium text-zinc-400 mb-2">Phone Number *</label><input value={form.phone} onChange={e=>update('phone',e.target.value)} onBlur={()=>touch('phone')} type="tel" className={fieldClass('phone')} placeholder="613-555-1234"/>{errorFor('phone')&&<p className="text-red-400 text-xs mt-1">{errorFor('phone')}</p>}</div>
                     </div>
                     <div><label className="block text-sm font-medium text-zinc-400 mb-2">Email Address *</label><input value={form.email} onChange={e=>update('email',e.target.value)} onBlur={()=>touch('email')} type="email" className={fieldClass('email')} placeholder="jane@example.com"/>{errorFor('email')&&<p className="text-red-400 text-xs mt-1">{errorFor('email')}</p>}</div>
-                    <div><label className="block text-sm font-medium text-zinc-400 mb-2">Service Address (Ottawa area) *</label><input value={form.address} onChange={e=>update('address',e.target.value)} onBlur={()=>touch('address')} className={fieldClass('address')} placeholder="123 Main St, Ottawa, ON"/>{errorFor('address')&&<p className="text-red-400 text-xs mt-1">{errorFor('address')}</p>}</div>
+                    <div>
+                      <label className="block text-sm font-medium text-zinc-400 mb-2">Service Address (Ottawa area) *</label>
+                      <div className="relative">
+                        <input
+                          value={form.address}
+                          onChange={e=>handleAddrInput(e.target.value)}
+                          onBlur={()=>{ touch('address'); setTimeout(()=>setShowAddrDrop(false), 200); }}
+                          onFocus={()=>addrSuggestions.length>0&&setShowAddrDrop(true)}
+                          className={fieldClass('address')}
+                          placeholder="Start typing your address..."
+                          autoComplete="off"
+                        />
+                        {showAddrDrop&&(
+                          <div className="absolute top-full left-0 right-0 z-50 mt-1 bg-zinc-800 border border-zinc-600 rounded-lg overflow-hidden shadow-xl">
+                            {addrSuggestions.map((s,i)=>(
+                              <button key={i} type="button" onMouseDown={()=>selectAddr(s)} className="w-full text-left px-4 py-3 text-sm text-zinc-300 hover:bg-zinc-700 hover:text-white flex items-start gap-2.5 border-b border-zinc-700 last:border-0">
+                                <MapPin className="h-3.5 w-3.5 text-amber-400 flex-shrink-0 mt-0.5"/><span>{s}</span>
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                      {errorFor('address')&&<p className="text-red-400 text-xs mt-1">{errorFor('address')}</p>}
+                    </div>
                   </div>
                 )}
                 {step===2&&(
                   <div className="space-y-5">
                     <h3 className="text-xl font-bold mb-6">Vehicle Details</h3>
                     <div className="grid sm:grid-cols-3 gap-5">
-                      <div><label className="block text-sm font-medium text-zinc-400 mb-2">Make *</label><input value={form.make} onChange={e=>update('make',e.target.value)} onBlur={()=>touch('make')} className={fieldClass('make')} placeholder="Toyota"/>{errorFor('make')&&<p className="text-red-400 text-xs mt-1">{errorFor('make')}</p>}</div>
-                      <div><label className="block text-sm font-medium text-zinc-400 mb-2">Model *</label><input value={form.model} onChange={e=>update('model',e.target.value)} onBlur={()=>touch('model')} className={fieldClass('model')} placeholder="Camry"/>{errorFor('model')&&<p className="text-red-400 text-xs mt-1">{errorFor('model')}</p>}</div>
-                      <div><label className="block text-sm font-medium text-zinc-400 mb-2">Year *</label><input value={form.year} onChange={e=>update('year',e.target.value)} onBlur={()=>touch('year')} className={fieldClass('year')} placeholder="2018" maxLength={4}/>{errorFor('year')&&<p className="text-red-400 text-xs mt-1">{errorFor('year')}</p>}</div>
+                      <div>
+                        <label className="block text-sm font-medium text-zinc-400 mb-2">Make *</label>
+                        <div className="relative">
+                          <select value={form.make} onChange={e=>{update('make',e.target.value);update('model','');touch('make');}} className={selectClass('make')}>
+                            <option value="" disabled>Select make...</option>
+                            {CAR_MAKES.map(m=><option key={m} value={m}>{m}</option>)}
+                          </select>
+                          <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400 pointer-events-none"/>
+                        </div>
+                        {errorFor('make')&&<p className="text-red-400 text-xs mt-1">{errorFor('make')}</p>}
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-zinc-400 mb-2">Model *</label>
+                        <div className="relative">
+                          <select value={form.model} onChange={e=>{update('model',e.target.value);touch('model');}} disabled={!form.make} className={`${selectClass('model')} ${!form.make?'opacity-50 cursor-not-allowed':''}`}>
+                            <option value="" disabled>{form.make?'Select model...':'Select make first'}</option>
+                            {form.make&&(CAR_DATA[form.make]||[]).map(m=><option key={m} value={m}>{m}</option>)}
+                          </select>
+                          <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400 pointer-events-none"/>
+                        </div>
+                        {errorFor('model')&&<p className="text-red-400 text-xs mt-1">{errorFor('model')}</p>}
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-zinc-400 mb-2">Year *</label>
+                        <div className="relative">
+                          <select value={form.year} onChange={e=>{update('year',e.target.value);touch('year');}} className={selectClass('year')}>
+                            <option value="" disabled>Select year...</option>
+                            {YEARS.map(y=><option key={y} value={y}>{y}</option>)}
+                          </select>
+                          <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400 pointer-events-none"/>
+                        </div>
+                        {errorFor('year')&&<p className="text-red-400 text-xs mt-1">{errorFor('year')}</p>}
+                      </div>
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-zinc-400 mb-3">What needs restoring?</label>
-                      <div className="grid grid-cols-3 gap-3">
-                        {[{value:'1',label:'1 Headlight',price:'$59'},{value:'2',label:'2 Headlights',price:'$99'},{value:'3',label:'Headlights + Fog',price:'$139'}].map(opt=>(
+                      <div className="grid grid-cols-2 gap-3">
+                        {[{value:'1',label:'1 Headlight',price:'$59'},{value:'2',label:'2 Headlights',price:'$99'}].map(opt=>(
                           <label key={opt.value} className={`cursor-pointer rounded-xl border p-4 text-center transition-all ${form.headlights===opt.value?'border-amber-400 bg-amber-400/10':'border-zinc-600 hover:border-zinc-500'}`}>
                             <input type="radio" name="headlights" value={opt.value} checked={form.headlights===opt.value} onChange={()=>update('headlights',opt.value)} className="sr-only"/>
                             <div className="font-semibold text-sm text-white mb-1">{opt.label}</div>
@@ -326,7 +450,7 @@ export default function App() {
                     <h3 className="text-xl font-bold mb-6">Review & Confirm</h3>
                     <div className="bg-zinc-700/50 rounded-xl p-6 space-y-4">
                       <div className="grid sm:grid-cols-2 gap-4">
-                        {[{label:'Name',value:form.name},{label:'Phone',value:form.phone},{label:'Email',value:form.email},{label:'Address',value:form.address},{label:'Vehicle',value:`${form.year} ${form.make} ${form.model}`},{label:'Service',value:form.headlights==='1'?'1 Headlight — $59':form.headlights==='2'?'2 Headlights — $99':'Headlights + Fog — $139'},{label:'Date',value:form.date},{label:'Time',value:form.time}].map(({label,value})=>(
+                        {[{label:'Name',value:form.name},{label:'Phone',value:form.phone},{label:'Email',value:form.email},{label:'Address',value:form.address},{label:'Vehicle',value:`${form.year} ${form.make} ${form.model}`},{label:'Service',value:form.headlights==='1'?'1 Headlight - $59':'2 Headlights - $99'},{label:'Date',value:form.date},{label:'Time',value:form.time}].map(({label,value})=>(
                           <div key={label}><p className="text-xs text-zinc-500 uppercase tracking-wider mb-0.5">{label}</p><p className="text-white font-medium">{value}</p></div>
                         ))}
                       </div>
@@ -336,7 +460,7 @@ export default function App() {
                   </div>
                 )}
                 <div className="flex justify-between mt-8 pt-6 border-t border-zinc-700">
-                  {step>1?(<button type="button" onClick={()=>setStep(s=>(s-1) as BookingStep)} className="text-zinc-400 hover:text-white font-medium transition-colors">← Back</button>):<div/>}
+                  {step>1?(<button type="button" onClick={()=>setStep(s=>(s-1) as BookingStep)} className="text-zinc-400 hover:text-white font-medium transition-colors">Back</button>):<div/>}
                   {step<4?(
                     <button type="button" onClick={()=>{ const sf:Record<number,(keyof FormData)[]>={1:['name','phone','email','address'],2:['make','model','year'],3:['date']}; touchStep(sf[step]??[]); const v=step===1?step1Valid:step===2?step2Valid:step3Valid; if(v)setStep(s=>(s+1) as BookingStep); }} className="bg-amber-400 text-zinc-950 font-bold px-8 py-3 rounded-xl hover:bg-amber-300 transition-all duration-200 flex items-center gap-2">Continue <ChevronRight className="h-4 w-4"/></button>
                   ):(
@@ -370,7 +494,7 @@ export default function App() {
         <div className="absolute inset-0 bg-black/10"/>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-extrabold text-zinc-950 mb-4">Ready for Crystal-Clear Headlights?</h2>
-          <p className="text-zinc-800 text-lg mb-8">Book online or call us we'll be at your door, anywhere in Ottawa.</p>
+          <p className="text-zinc-800 text-lg mb-8">Ottawa's best headlight restoration, at your door. Book online or call us today.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#booking" className="bg-zinc-950 text-white font-bold px-8 py-4 rounded-xl hover:bg-zinc-800 transition-all duration-200 hover:scale-105 flex items-center justify-center gap-2"><Calendar className="h-5 w-5"/> Book Online</a>
             <a href={PHONE_HREF} className="border-2 border-zinc-950 text-zinc-950 font-bold px-8 py-4 rounded-xl hover:bg-zinc-950/10 transition-all duration-200 flex items-center justify-center gap-2"><Phone className="h-5 w-5"/> {PHONE}</a>
@@ -382,8 +506,8 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8 mb-10">
             <div>
-              <div className="flex items-center gap-2 mb-4"><Sparkles className="h-5 w-5 text-amber-400"/><span className="text-lg font-bold">Shine My <span className="text-amber-400">Lights</span> Headlight Restoration</span></div>
-              <p className="text-zinc-500 text-sm leading-relaxed">Professional mobile headlight restoration serving Ottawa and surrounding areas. We come to you.</p>
+              <div className="flex items-center gap-2 mb-4"><img src="/logo.png" alt="logo" className="h-8 w-auto"/></div>
+              <p className="text-zinc-500 text-sm leading-relaxed">Ottawa's best mobile headlight restoration. We come to you, anywhere in the Ottawa area.</p>
             </div>
             <div>
               <h4 className="font-bold text-white mb-4">Quick Links</h4>
@@ -394,7 +518,7 @@ export default function App() {
               <div className="space-y-3 text-sm">
                 <a href={PHONE_HREF} className="flex items-center gap-2 text-zinc-400 hover:text-amber-400 transition-colors"><Phone className="h-4 w-4 text-amber-400"/> {PHONE}</a>
                 <div className="flex items-start gap-2 text-zinc-400"><MapPin className="h-4 w-4 text-amber-400 mt-0.5 flex-shrink-0"/><span>Ottawa, ON & surrounding area<br/>Kanata · Barrhaven · Orleans · Nepean · Gloucester</span></div>
-                <div className="flex items-center gap-2 text-zinc-400"><Clock className="h-4 w-4 text-amber-400"/>Mon–Sat · 8:00 AM – 6:00 PM</div>
+                <div className="flex items-center gap-2 text-zinc-400"><Clock className="h-4 w-4 text-amber-400"/>Mon-Sat · 8:00 AM - 6:00 PM</div>
               </div>
             </div>
           </div>
