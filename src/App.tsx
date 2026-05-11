@@ -227,13 +227,16 @@ export default function App() {
           <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {[
               {name:'Single Headlight',price:'$59',desc:'One headlight restored to like-new condition.',features:['Multi-stage wet sanding','Machine polish','UV sealant coat','1-year protection'],highlight:false},
-              {name:'Full Set',price:'$99',desc:'Both headlights, our most popular package.',features:['Multi-stage wet sanding','Machine polish','UV sealant coat','2-year protection','Free touch-up within 30 days'],highlight:true},
+              {name:'Full Set',price:'$79',originalPrice:'$99',desc:'Both headlights, our most popular package.',features:['Multi-stage wet sanding','Machine polish','UV sealant coat','2-year protection','Free touch-up within 30 days'],highlight:true},
             ].map(pkg=>(
               <div key={pkg.name} className={`relative rounded-2xl p-8 border transition-all duration-300 hover:scale-105 ${pkg.highlight?'bg-amber-400 border-amber-300 text-zinc-950 shadow-2xl shadow-amber-400/30':'bg-zinc-800 border-zinc-700 hover:border-amber-400/40'}`}>
                 {pkg.highlight&&(<div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-zinc-950 text-amber-400 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full border border-amber-400/40">Most Popular</div>)}
                 <h3 className={`text-xl font-bold mb-1 ${pkg.highlight?'text-zinc-950':'text-white'}`}>{pkg.name}</h3>
                 <p className={`text-sm mb-4 ${pkg.highlight?'text-zinc-800':'text-zinc-400'}`}>{pkg.desc}</p>
-                <div className={`text-4xl font-extrabold mb-6 ${pkg.highlight?'text-zinc-950':'text-amber-400'}`}>{pkg.price}</div>
+                <div className="mb-6">
+                  <div className={`text-4xl font-extrabold ${pkg.highlight?'text-zinc-950':'text-amber-400'}`}>{pkg.price}</div>
+                  {(pkg as any).originalPrice&&<div className={`text-lg line-through mt-1 ${pkg.highlight?'text-zinc-700':'text-zinc-500'}`}>{(pkg as any).originalPrice} <span className={`no-underline text-sm font-bold ${pkg.highlight?'text-zinc-800':'text-amber-300'}`}>SALE</span></div>}
+                </div>
                 <ul className="space-y-3 mb-8">
                   {pkg.features.map(f=>(<li key={f} className="flex items-center gap-2.5 text-sm"><CheckCircle className={`h-4 w-4 flex-shrink-0 ${pkg.highlight?'text-zinc-900':'text-amber-400'}`}/><span className={pkg.highlight?'text-zinc-900':'text-zinc-300'}>{f}</span></li>))}
                 </ul>
@@ -420,7 +423,7 @@ export default function App() {
                     <div>
                       <label className="block text-sm font-medium text-zinc-400 mb-3">What needs restoring?</label>
                       <div className="grid grid-cols-2 gap-3">
-                        {[{value:'1',label:'1 Headlight',price:'$59'},{value:'2',label:'2 Headlights',price:'$99'}].map(opt=>(
+                        {[{value:'1',label:'1 Headlight',price:'$59'},{value:'2',label:'2 Headlights',price:'$79'}].map(opt=>(
                           <label key={opt.value} className={`cursor-pointer rounded-xl border p-4 text-center transition-all ${form.headlights===opt.value?'border-amber-400 bg-amber-400/10':'border-zinc-600 hover:border-zinc-500'}`}>
                             <input type="radio" name="headlights" value={opt.value} checked={form.headlights===opt.value} onChange={()=>update('headlights',opt.value)} className="sr-only"/>
                             <div className="font-semibold text-sm text-white mb-1">{opt.label}</div>
@@ -450,7 +453,7 @@ export default function App() {
                     <h3 className="text-xl font-bold mb-6">Review & Confirm</h3>
                     <div className="bg-zinc-700/50 rounded-xl p-6 space-y-4">
                       <div className="grid sm:grid-cols-2 gap-4">
-                        {[{label:'Name',value:form.name},{label:'Phone',value:form.phone},{label:'Email',value:form.email},{label:'Address',value:form.address},{label:'Vehicle',value:`${form.year} ${form.make} ${form.model}`},{label:'Service',value:form.headlights==='1'?'1 Headlight - $59':'2 Headlights - $99'},{label:'Date',value:form.date},{label:'Time',value:form.time}].map(({label,value})=>(
+                        {[{label:'Name',value:form.name},{label:'Phone',value:form.phone},{label:'Email',value:form.email},{label:'Address',value:form.address},{label:'Vehicle',value:`${form.year} ${form.make} ${form.model}`},{label:'Service',value:form.headlights==='1'?'1 Headlight - $59':'2 Headlights - $79'},{label:'Date',value:form.date},{label:'Time',value:form.time}].map(({label,value})=>(
                           <div key={label}><p className="text-xs text-zinc-500 uppercase tracking-wider mb-0.5">{label}</p><p className="text-white font-medium">{value}</p></div>
                         ))}
                       </div>
