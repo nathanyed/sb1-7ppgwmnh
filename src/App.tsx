@@ -235,7 +235,7 @@ export default function App() {
                 <p className={`text-sm mb-4 ${pkg.highlight?'text-zinc-800':'text-zinc-400'}`}>{pkg.desc}</p>
                 <div className="mb-6">
                   <div className={`text-4xl font-extrabold ${pkg.highlight?'text-zinc-950':'text-amber-400'}`}>{pkg.price}</div>
-                  {(pkg as any).originalPrice&&<div className={`text-lg line-through mt-1 ${pkg.highlight?'text-zinc-700':'text-zinc-500'}`}>{(pkg as any).originalPrice} <span className={`no-underline text-sm font-bold ${pkg.highlight?'text-zinc-800':'text-amber-300'}`}>SALE</span></div>}
+                  {(pkg as any).originalPrice&&<div className={`text-lg line-through mt-1 ${pkg.highlight?'text-zinc-700':'text-zinc-500'}`}>{(pkg as any).originalPrice} <span className={`no-underline text-sm font-bold ${pkg.highlight?'text-zinc-800':'text-amber-300'}`}> </span></div>}
                 </div>
                 <ul className="space-y-3 mb-8">
                   {pkg.features.map(f=>(<li key={f} className="flex items-center gap-2.5 text-sm"><CheckCircle className={`h-4 w-4 flex-shrink-0 ${pkg.highlight?'text-zinc-900':'text-amber-400'}`}/><span className={pkg.highlight?'text-zinc-900':'text-zinc-300'}>{f}</span></li>))}
