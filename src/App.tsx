@@ -5,7 +5,7 @@ import {
   ArrowRight, Sparkles
 } from 'lucide-react';
 
-const PHONE = '647-222-6285';
+const PHONE = '647-222-6285'; 
 const PHONE_HREF = 'tel:6472226285';
 
 const timeSlots = [ 
