@@ -8,7 +8,7 @@ import {
 const PHONE = '647-222-6285'; 
 const PHONE_HREF = 'tel:6472226285';
 
-const timeSlots = [ 
+const timeSlots = [  
   '8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM',
   '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM',
 ];
