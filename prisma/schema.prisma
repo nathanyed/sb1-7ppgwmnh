@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Client {
+  id               Int       @id @default(autoincrement())
+  facebook_user_id String?   @unique
+  name             String
+  phone            String?
+  source           String    @default("manual")
+  created_at       DateTime  @default(now())
+  bookings         Booking[]
+  messages         Message[]
+}
+
+model Booking {
+  id             Int       @id @default(autoincrement())
+  client_id      Int
+  client         Client    @relation(fields: [client_id], references: [id])
+  service_type   String
+  scheduled_date DateTime
+  scheduled_time String
+  location       String
+  status         String    @default("pending")
+  notes          String?
+  price_quoted   Float?
+  price_paid     Float?
+  created_at     DateTime  @default(now())
+  revenue        Revenue[]
+}
+
+model Message {
+  id         Int      @id @default(autoincrement())
+  client_id  Int
+  client     Client   @relation(fields: [client_id], references: [id])
+  direction  String
+  content    String
+  timestamp  DateTime
+  read       Boolean  @default(false)
+  created_at DateTime @default(now())
+}
+
+model Expense {
+  id          Int      @id @default(autoincrement())
+  category    String
+  description String
+  amount      Float
+  date        DateTime
+  receipt_url String?
+  created_at  DateTime @default(now())
+}
+
+model Revenue {
+  id             Int      @id @default(autoincrement())
+  booking_id     Int?
+  booking        Booking? @relation(fields: [booking_id], references: [id])
+  amount         Float
+  payment_method String
+  date           DateTime
+  notes          String?
+  created_at     DateTime @default(now())
+}
+
+model AdInsight {
+  id               Int      @id @default(autoincrement())
+  date             DateTime @unique
+  spend            Float
+  impressions      Int
+  reach            Int
+  clicks           Int
+  ctr              Float
+  cost_per_result  Float?
+  synced_at        DateTime
+  created_at       DateTime @default(now())
+}
