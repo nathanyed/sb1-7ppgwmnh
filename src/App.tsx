@@ -14,6 +14,7 @@ const timeSlots = [
 ];
 
 const faqs = [
+  { q: 'How much do you charge?', a: 'We charge anywhere from $80 to $120 depending on the car.' },
   { q: 'How long does the restoration take?', a: 'Most jobs take 45-90 minutes per vehicle, depending on the severity of oxidation and the number of headlights being restored.' },
   { q: 'Do you come to my location?', a: 'Yes, we are a fully mobile service covering the entire Ottawa area. We come to your home, office, or wherever is most convenient for you.' },
   { q: 'How long will the results last?', a: 'Our professional-grade UV-protective coating keeps lenses clear for 2-3 years under normal conditions. We use the same multi-step process used by dealerships.' },
@@ -176,7 +177,7 @@ export default function App() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 text-blue-500 text-sm font-medium px-4 py-2 rounded-full mb-8">
-              <Star className="h-3.5 w-3.5 fill-blue-500"/> Ottawa's Best Headlight Restoration
+              <Star className="h-3.5 w-3.5 fill-blue-500"/> Ottawa's Most Trusted Headlight Restoration
             </div>
             <h1 className="text-5xl lg:text-6xl font-extrabold leading-tight mb-6 tracking-tight">See Clearly.<br/><span className="text-blue-500">Drive Safely.</span></h1>
             <p className="text-zinc-400 text-xl leading-relaxed mb-8 max-w-lg">Ottawa's top-rated mobile headlight restoration service. We bring foggy, yellowed lenses back to showroom clarity at your door.</p>
