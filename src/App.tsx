@@ -93,11 +93,11 @@ export default function App() {
   const errorFor = (f:keyof FormData) => !touched[f] ? '' : validators[f]?.(form[f]) ?? '';
   const fieldClass = (f:keyof FormData) => {
     const err=errorFor(f); const ok=touched[f]&&!err&&form[f];
-    return `w-full bg-zinc-700 border rounded-lg px-4 py-3 text-white placeholder-zinc-500 focus:outline-none transition-colors ${err?'border-red-500 focus:border-red-400':ok?'border-green-500 focus:border-green-400':'border-zinc-600 focus:border-amber-400'}`;
+    return `w-full bg-zinc-700 border rounded-lg px-4 py-3 text-white placeholder-zinc-500 focus:outline-none transition-colors ${err?'border-red-500 focus:border-red-400':ok?'border-green-500 focus:border-green-400':'border-zinc-600 focus:border-blue-500'}`;
   };
   const selectClass = (f:keyof FormData) => {
     const err=errorFor(f); const ok=touched[f]&&!err&&form[f];
-    return `w-full bg-zinc-700 border rounded-lg px-4 py-3 text-white focus:outline-none transition-colors appearance-none cursor-pointer ${err?'border-red-500 focus:border-red-400':ok?'border-green-500 focus:border-green-400':'border-zinc-600 focus:border-amber-400'}`;
+    return `w-full bg-zinc-700 border rounded-lg px-4 py-3 text-white focus:outline-none transition-colors appearance-none cursor-pointer ${err?'border-red-500 focus:border-red-400':ok?'border-green-500 focus:border-green-400':'border-zinc-600 focus:border-blue-500'}`;
   };
   const isValid = (f:keyof FormData) => !validators[f] || validators[f]!(form[f])==='';
   const step1Valid = isValid('name')&&isValid('phone')&&isValid('email')&&isValid('address');
@@ -136,7 +136,7 @@ export default function App() {
   }
 
   const navLinks = [
-    {label:'Services',href:'#services'},{label:'How It Works',href:'#how-it-works'},
+    {label:'How It Works',href:'#how-it-works'},
     {label:'Reviews',href:'#reviews'},{label:'FAQ',href:'#faq'},{label:'Book Now',href:'#booking'},
   ];
 
@@ -146,7 +146,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">
-              <img src="/logo.png" alt="Shine My Lights Headlight Restoration" className="h-8 w-auto" />
+              <img src="/logo.png" alt="PureVision Auto Headlight Restoration" className="h-8 w-auto" />
             </div>
             <nav className="hidden md:flex items-center gap-8">
               {navLinks.slice(0,-1).map(l=>(
@@ -154,8 +154,8 @@ export default function App() {
               ))}
             </nav>
             <div className="hidden md:flex items-center gap-4">
-              <a href={PHONE_HREF} className="flex items-center gap-2 text-amber-400 font-semibold hover:text-amber-300 transition-colors"><Phone className="h-4 w-4"/>{PHONE}</a>
-              <a href="#booking" className="bg-amber-400 text-zinc-950 text-sm font-bold px-5 py-2.5 rounded-lg hover:bg-amber-300 transition-all duration-200 hover:scale-105">Book Now</a>
+              <a href={PHONE_HREF} className="flex items-center gap-2 text-blue-500 font-semibold hover:text-blue-400 transition-colors"><Phone className="h-4 w-4"/>{PHONE}</a>
+              <a href="#booking" className="bg-blue-600 text-white text-sm font-bold px-5 py-2.5 rounded-lg hover:bg-blue-500 transition-all duration-200 hover:scale-105">Book Now</a>
             </div>
             <button onClick={()=>setMenuOpen(v=>!v)} className="md:hidden p-2 text-zinc-400 hover:text-white">
               {menuOpen?<X className="h-6 w-6"/>:<Menu className="h-6 w-6"/>}
@@ -165,28 +165,28 @@ export default function App() {
         {menuOpen&&(
           <div className="md:hidden bg-zinc-900 border-t border-zinc-800 px-4 py-4 space-y-3">
             {navLinks.map(l=>(<a key={l.href} href={l.href} onClick={()=>setMenuOpen(false)} className="block text-zinc-300 hover:text-white py-1">{l.label}</a>))}
-            <a href={PHONE_HREF} className="flex items-center gap-2 text-amber-400 font-semibold py-1"><Phone className="h-4 w-4"/>{PHONE}</a>
+            <a href={PHONE_HREF} className="flex items-center gap-2 text-blue-500 font-semibold py-1"><Phone className="h-4 w-4"/>{PHONE}</a>
           </div>
         )}
       </header>
 
       <section className="relative pt-16 min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950"/>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-amber-500/5 blur-3xl pointer-events-none"/>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-blue-700/5 blur-3xl pointer-events-none"/>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 bg-amber-400/10 border border-amber-400/20 text-amber-400 text-sm font-medium px-4 py-2 rounded-full mb-8">
-              <Star className="h-3.5 w-3.5 fill-amber-400"/> Ottawa's Best Headlight Restoration
+            <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 text-blue-500 text-sm font-medium px-4 py-2 rounded-full mb-8">
+              <Star className="h-3.5 w-3.5 fill-blue-500"/> Ottawa's Best Headlight Restoration
             </div>
-            <h1 className="text-5xl lg:text-6xl font-extrabold leading-tight mb-6 tracking-tight">See Clearly.<br/><span className="text-amber-400">Drive Safely.</span></h1>
+            <h1 className="text-5xl lg:text-6xl font-extrabold leading-tight mb-6 tracking-tight">See Clearly.<br/><span className="text-blue-500">Drive Safely.</span></h1>
             <p className="text-zinc-400 text-xl leading-relaxed mb-8 max-w-lg">Ottawa's top-rated mobile headlight restoration service. We bring foggy, yellowed lenses back to showroom clarity at your door.</p>
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
-              <a href="#booking" className="bg-amber-400 text-zinc-950 font-bold px-8 py-4 rounded-xl text-lg hover:bg-amber-300 transition-all duration-200 hover:scale-105 flex items-center justify-center gap-2 shadow-lg shadow-amber-400/20">Book Your Appointment <ArrowRight className="h-5 w-5"/></a>
-              <a href={PHONE_HREF} className="border border-zinc-700 text-white font-semibold px-8 py-4 rounded-xl text-lg hover:border-amber-400/50 hover:bg-zinc-800 transition-all duration-200 flex items-center justify-center gap-2"><Phone className="h-5 w-5 text-amber-400"/> Call Now</a>
+              <a href="#booking" className="bg-blue-600 text-white font-bold px-8 py-4 rounded-xl text-lg hover:bg-blue-500 transition-all duration-200 hover:scale-105 flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20">Book Your Appointment <ArrowRight className="h-5 w-5"/></a>
+              <a href={PHONE_HREF} className="border border-zinc-700 text-white font-semibold px-8 py-4 rounded-xl text-lg hover:border-blue-500/50 hover:bg-zinc-800 transition-all duration-200 flex items-center justify-center gap-2"><Phone className="h-5 w-5 text-blue-500"/> Call Now</a>
             </div>
             <div className="flex flex-wrap gap-6">
               {[{icon:Shield,label:'UV Coating Included'},{icon:Car,label:'We Come to You'},{icon:Clock,label:'45-90 Min Service'}].map(({icon:Icon,label})=>(
-                <div key={label} className="flex items-center gap-2 text-zinc-400 text-sm"><Icon className="h-4 w-4 text-amber-400"/>{label}</div>
+                <div key={label} className="flex items-center gap-2 text-zinc-400 text-sm"><Icon className="h-4 w-4 text-blue-500"/>{label}</div>
               ))}
             </div>
           </div>
@@ -199,127 +199,20 @@ export default function App() {
                   <p className="text-zinc-500 text-sm">Yellowed, Foggy, Hazed</p>
                 </div>
                 <div className="p-6 text-center bg-zinc-900/50">
-                  <div className="text-xs font-bold uppercase tracking-widest text-amber-400 mb-4">After</div>
+                  <div className="text-xs font-bold uppercase tracking-widest text-blue-500 mb-4">After</div>
                   <img src="/headlight_after.png" alt="After headlight restoration" className="w-full h-48 object-cover rounded-xl mb-4"/>
                   <p className="text-zinc-300 text-sm">Crystal Clear, Protected</p>
                 </div>
               </div>
               <div className="border-t border-zinc-800 p-4 flex items-center justify-center gap-2 text-sm">
-                <CheckCircle className="h-4 w-4 text-amber-400"/><span className="text-zinc-400">Results guaranteed or we redo it free</span>
+                <CheckCircle className="h-4 w-4 text-blue-500"/><span className="text-zinc-400">Results guaranteed or we redo it free</span>
               </div>
             </div>
             <div className="absolute -bottom-5 -right-4 bg-zinc-900 border border-zinc-700 rounded-xl p-4 shadow-xl">
-              <div className="flex items-center gap-1 mb-1">{[...Array(5)].map((_,i)=>(<Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400"/>))}</div>
-              <p className="text-white font-bold text-sm">5.0 Rating</p>
+              <div className="flex items-center gap-1 mb-1">{[...Array(5)].map((_,i)=>(<Star key={i} className="h-4 w-4 fill-blue-500 text-blue-500"/>))}</div>
+              <p className="text-white font-bold text-sm">4.8 Rating</p>
               <p className="text-zinc-500 text-xs">200+ happy clients</p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="services" className="py-24 bg-zinc-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="text-amber-400 text-sm font-bold uppercase tracking-widest mb-3">Ottawa's Best</p>
-            <h2 className="text-4xl font-extrabold mb-4">Restoration Packages</h2>
-            <p className="text-zinc-400 text-lg max-w-2xl mx-auto">Every package includes multi-stage sanding, polishing, and a UV-protective clear coat.</p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            {[
-              {name:'Single Headlight',price:'$59',desc:'One headlight restored to like-new condition.',features:['Multi-stage wet sanding','Machine polish','UV sealant coat','1-year protection'],highlight:false},
-              {name:'Full Set',price:'$79',originalPrice:'$99',desc:'Both headlights, our most popular package.',features:['Multi-stage wet sanding','Machine polish','UV sealant coat','2-year protection','Free touch-up within 30 days'],highlight:true},
-            ].map(pkg=>(
-              <div key={pkg.name} className={`relative rounded-2xl p-8 border transition-all duration-300 hover:scale-105 ${pkg.highlight?'bg-amber-400 border-amber-300 text-zinc-950 shadow-2xl shadow-amber-400/30':'bg-zinc-800 border-zinc-700 hover:border-amber-400/40'}`}>
-                {pkg.highlight&&(<div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-zinc-950 text-amber-400 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full border border-amber-400/40">Most Popular</div>)}
-                <h3 className={`text-xl font-bold mb-1 ${pkg.highlight?'text-zinc-950':'text-white'}`}>{pkg.name}</h3>
-                <p className={`text-sm mb-4 ${pkg.highlight?'text-zinc-800':'text-zinc-400'}`}>{pkg.desc}</p>
-                <div className="mb-6">
-                  <div className={`text-4xl font-extrabold ${pkg.highlight?'text-zinc-950':'text-amber-400'}`}>{pkg.price}</div>
-                  {(pkg as any).originalPrice&&<div className={`text-lg line-through mt-1 ${pkg.highlight?'text-zinc-700':'text-zinc-500'}`}>{(pkg as any).originalPrice} <span className={`no-underline text-sm font-bold ${pkg.highlight?'text-zinc-800':'text-amber-300'}`}> </span></div>}
-                </div>
-                <ul className="space-y-3 mb-8">
-                  {pkg.features.map(f=>(<li key={f} className="flex items-center gap-2.5 text-sm"><CheckCircle className={`h-4 w-4 flex-shrink-0 ${pkg.highlight?'text-zinc-900':'text-amber-400'}`}/><span className={pkg.highlight?'text-zinc-900':'text-zinc-300'}>{f}</span></li>))}
-                </ul>
-                <a href="#booking" className={`block text-center font-bold py-3 rounded-xl transition-all duration-200 ${pkg.highlight?'bg-zinc-950 text-amber-400 hover:bg-zinc-900':'bg-amber-400 text-zinc-950 hover:bg-amber-300'}`}>Book This Package</a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="how-it-works" className="py-24 bg-zinc-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="text-amber-400 text-sm font-bold uppercase tracking-widest mb-3">Simple Process</p>
-            <h2 className="text-4xl font-extrabold mb-4">How It Works</h2>
-            <p className="text-zinc-400 text-lg">Three easy steps to crystal-clear headlights.</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {step:'01',icon:Calendar,title:'Book Online',desc:"Pick a date and time that works for you. We'll confirm within the hour."},
-              {step:'02',icon:Car,title:'We Come to You',desc:'Our technician arrives at your home or office anywhere in Ottawa, no drop-off needed.'},
-              {step:'03',icon:Sparkles,title:'Drive Clear',desc:'In under 90 minutes, your headlights are restored and protected. Safer driving starts today.'},
-            ].map(({step,icon:Icon,title,desc})=>(
-              <div key={step} className="relative bg-zinc-900 border border-zinc-800 rounded-2xl p-8 text-center hover:border-amber-400/30 transition-colors">
-                <div className="text-5xl font-extrabold text-zinc-800 mb-4 leading-none">{step}</div>
-                <div className="w-14 h-14 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center mx-auto mb-5"><Icon className="h-6 w-6 text-amber-400"/></div>
-                <h3 className="text-xl font-bold mb-3">{title}</h3>
-                <p className="text-zinc-400 leading-relaxed">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 bg-zinc-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <p className="text-amber-400 text-sm font-bold uppercase tracking-widest mb-3">Why Ottawa Chooses Us</p>
-            <h2 className="text-4xl font-extrabold mb-6 leading-tight">Ottawa's Best.<br/>At Your Front Door.</h2>
-            <p className="text-zinc-400 text-lg leading-relaxed mb-8">Foggy headlights reduce light output by up to 80%, making night driving significantly more dangerous. We use a 5-step professional restoration system, the same process used by auto dealerships, and come directly to you.</p>
-            <div className="space-y-4">
-              {[
-                {title:'Fully Mobile Service',desc:'We serve your driveway, parking lot, or office, anywhere in Ottawa.'},
-                {title:'Professional-Grade Results',desc:'5-step system: sanding, polishing, and UV-protective coating for long-lasting clarity.'},
-                {title:'Transparent Pricing',desc:'No hidden fees. What you see is what you pay, always.'},
-                {title:'Satisfaction Guaranteed',desc:"Not satisfied? We'll redo it free. Your clarity is our reputation."},
-              ].map(({title,desc})=>(
-                <div key={title} className="flex gap-4">
-                  <div className="w-6 h-6 rounded-full bg-amber-400/20 border border-amber-400/40 flex items-center justify-center flex-shrink-0 mt-0.5"><CheckCircle className="h-3.5 w-3.5 text-amber-400"/></div>
-                  <div><p className="font-semibold text-white">{title}</p><p className="text-zinc-400 text-sm mt-0.5">{desc}</p></div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            {[{value:'200+',label:'Vehicles Restored'},{value:'5★',label:'Average Rating'},{value:'2-3yr',label:'Coating Lifespan'},{value:'$0',label:'Travel Fee'}].map(({value,label})=>(
-              <div key={label} className="bg-zinc-800 border border-zinc-700 rounded-2xl p-8 text-center hover:border-amber-400/30 transition-colors">
-                <div className="text-4xl font-extrabold text-amber-400 mb-2">{value}</div>
-                <div className="text-zinc-400 text-sm">{label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="reviews" className="py-24 bg-zinc-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="text-amber-400 text-sm font-bold uppercase tracking-widest mb-3">Testimonials</p>
-            <h2 className="text-4xl font-extrabold mb-4">What Ottawa Drivers Say</h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {name:'Michael T.',location:'Kanata, ON',text:"Couldn't believe the difference. My 2015 Civic's headlights look brand new. The tech was on time, professional, and done in under an hour. Highly recommend."},
-              {name:'Sarah L.',location:'Barrhaven, ON',text:'Was about to spend $600 on replacement headlights. This cost me $99 and the results are identical. Will be telling everyone I know about this service.'},
-              {name:'David M.',location:'Orleans, ON',text:"Super convenient having them come to the house. My 2018 RAV4 lenses were severely yellowed and now they're crystal clear. Great value and great service."},
-            ].map(({name,location,text})=>(
-              <div key={name} className="bg-zinc-900 border border-zinc-800 rounded-2xl p-7 hover:border-amber-400/20 transition-colors">
-                <div className="flex items-center gap-1 mb-4">{[...Array(5)].map((_,i)=>(<Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400"/>))}</div>
-                <p className="text-zinc-300 leading-relaxed mb-6">"{text}"</p>
-                <div><p className="font-semibold text-white">{name}</p><p className="text-zinc-500 text-sm flex items-center gap-1"><MapPin className="h-3 w-3"/> {location}</p></div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -327,24 +220,24 @@ export default function App() {
       <section id="booking" className="py-24 bg-zinc-900">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="text-amber-400 text-sm font-bold uppercase tracking-widest mb-3">Schedule Your Visit</p>
+            <p className="text-blue-500 text-sm font-bold uppercase tracking-widest mb-3">Schedule Your Visit</p>
             <h2 className="text-4xl font-extrabold mb-4">Book an Appointment</h2>
             <p className="text-zinc-400 text-lg">We'll come to you. Takes less than 2 minutes to book.</p>
           </div>
           {submitted ? (
-            <div className="bg-zinc-800 border border-amber-400/30 rounded-2xl p-12 text-center">
-              <div className="w-16 h-16 rounded-full bg-amber-400/20 flex items-center justify-center mx-auto mb-6"><CheckCircle className="h-8 w-8 text-amber-400"/></div>
+            <div className="bg-zinc-800 border border-blue-500/30 rounded-2xl p-12 text-center">
+              <div className="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center mx-auto mb-6"><CheckCircle className="h-8 w-8 text-blue-500"/></div>
               <h3 className="text-2xl font-bold mb-3">Booking Request Received!</h3>
               <p className="text-zinc-400 mb-2">Thanks, <span className="text-white font-semibold">{form.name}</span>! We'll confirm your appointment via phone or email within the hour.</p>
               <p className="text-zinc-500 text-sm mb-8">{form.date} at {form.time} · {form.address}</p>
-              <a href={PHONE_HREF} className="inline-flex items-center gap-2 text-amber-400 font-semibold hover:text-amber-300 transition-colors"><Phone className="h-4 w-4"/> Questions? Call {PHONE}</a>
+              <a href={PHONE_HREF} className="inline-flex items-center gap-2 text-blue-500 font-semibold hover:text-blue-400 transition-colors"><Phone className="h-4 w-4"/> Questions? Call {PHONE}</a>
             </div>
           ) : (
             <div className="bg-zinc-800 border border-zinc-700 rounded-2xl overflow-hidden">
               <div className="flex border-b border-zinc-700">
                 {(['Contact','Vehicle','Schedule','Review'] as const).map((label,i)=>{
                   const s=(i+1) as BookingStep; const active=step===s; const done=step>s;
-                  return (<div key={label} className={`flex-1 py-4 text-center text-xs font-bold uppercase tracking-widest transition-colors ${active?'text-amber-400 border-b-2 border-amber-400':done?'text-zinc-400':'text-zinc-600'}`}>{done?<CheckCircle className="h-4 w-4 mx-auto"/>:label}</div>);
+                  return (<div key={label} className={`flex-1 py-4 text-center text-xs font-bold uppercase tracking-widest transition-colors ${active?'text-blue-500 border-b-2 border-blue-500':done?'text-zinc-400':'text-zinc-600'}`}>{done?<CheckCircle className="h-4 w-4 mx-auto"/>:label}</div>);
                 })}
               </div>
               <form onSubmit={handleSubmit} className="p-8">
@@ -372,7 +265,7 @@ export default function App() {
                           <div className="absolute top-full left-0 right-0 z-50 mt-1 bg-zinc-800 border border-zinc-600 rounded-lg overflow-hidden shadow-xl">
                             {addrSuggestions.map((s,i)=>(
                               <button key={i} type="button" onMouseDown={()=>selectAddr(s)} className="w-full text-left px-4 py-3 text-sm text-zinc-300 hover:bg-zinc-700 hover:text-white flex items-start gap-2.5 border-b border-zinc-700 last:border-0">
-                                <MapPin className="h-3.5 w-3.5 text-amber-400 flex-shrink-0 mt-0.5"/><span>{s}</span>
+                                <MapPin className="h-3.5 w-3.5 text-blue-500 flex-shrink-0 mt-0.5"/><span>{s}</span>
                               </button>
                             ))}
                           </div>
@@ -424,15 +317,15 @@ export default function App() {
                       <label className="block text-sm font-medium text-zinc-400 mb-3">What needs restoring?</label>
                       <div className="grid grid-cols-2 gap-3">
                         {[{value:'1',label:'1 Headlight',price:'$59'},{value:'2',label:'2 Headlights',price:'$79'}].map(opt=>(
-                          <label key={opt.value} className={`cursor-pointer rounded-xl border p-4 text-center transition-all ${form.headlights===opt.value?'border-amber-400 bg-amber-400/10':'border-zinc-600 hover:border-zinc-500'}`}>
+                          <label key={opt.value} className={`cursor-pointer rounded-xl border p-4 text-center transition-all ${form.headlights===opt.value?'border-blue-500 bg-blue-500/10':'border-zinc-600 hover:border-zinc-500'}`}>
                             <input type="radio" name="headlights" value={opt.value} checked={form.headlights===opt.value} onChange={()=>update('headlights',opt.value)} className="sr-only"/>
                             <div className="font-semibold text-sm text-white mb-1">{opt.label}</div>
-                            <div className={`text-lg font-bold ${form.headlights===opt.value?'text-amber-400':'text-zinc-400'}`}>{opt.price}</div>
+                            <div className={`text-lg font-bold ${form.headlights===opt.value?'text-blue-500':'text-zinc-400'}`}>{opt.price}</div>
                           </label>
                         ))}
                       </div>
                     </div>
-                    <div><label className="block text-sm font-medium text-zinc-400 mb-2">Additional Notes</label><textarea value={form.notes} onChange={e=>update('notes',e.target.value)} rows={3} className="w-full bg-zinc-700 border border-zinc-600 rounded-lg px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:border-amber-400 transition-colors resize-none" placeholder="Anything we should know about your vehicle or the headlights?"/></div>
+                    <div><label className="block text-sm font-medium text-zinc-400 mb-2">Additional Notes</label><textarea value={form.notes} onChange={e=>update('notes',e.target.value)} rows={3} className="w-full bg-zinc-700 border border-zinc-600 rounded-lg px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500 transition-colors resize-none" placeholder="Anything we should know about your vehicle or the headlights?"/></div>
                   </div>
                 )}
                 {step===3&&(
@@ -442,10 +335,10 @@ export default function App() {
                     <div>
                       <label className="block text-sm font-medium text-zinc-400 mb-3">Preferred Time *</label>
                       <div className="grid grid-cols-5 gap-2">
-                        {timeSlots.map(t=>(<button key={t} type="button" onClick={()=>update('time',t)} className={`py-2.5 rounded-lg text-sm font-medium transition-all ${form.time===t?'bg-amber-400 text-zinc-950':'bg-zinc-700 text-zinc-300 hover:bg-zinc-600'}`}>{t}</button>))}
+                        {timeSlots.map(t=>(<button key={t} type="button" onClick={()=>update('time',t)} className={`py-2.5 rounded-lg text-sm font-medium transition-all ${form.time===t?'bg-blue-600 text-white':'bg-zinc-700 text-zinc-300 hover:bg-zinc-600'}`}>{t}</button>))}
                       </div>
                     </div>
-                    <div className="bg-amber-400/5 border border-amber-400/20 rounded-xl p-4 text-sm text-zinc-400"><Zap className="h-4 w-4 text-amber-400 inline mr-2"/>We'll confirm your exact appointment within 1 hour of booking.</div>
+                    <div className="bg-blue-500/5 border border-blue-500/20 rounded-xl p-4 text-sm text-zinc-400"><Zap className="h-4 w-4 text-blue-500 inline mr-2"/>We'll confirm your exact appointment within 1 hour of booking.</div>
                   </div>
                 )}
                 {step===4&&(
@@ -465,9 +358,9 @@ export default function App() {
                 <div className="flex justify-between mt-8 pt-6 border-t border-zinc-700">
                   {step>1?(<button type="button" onClick={()=>setStep(s=>(s-1) as BookingStep)} className="text-zinc-400 hover:text-white font-medium transition-colors">Back</button>):<div/>}
                   {step<4?(
-                    <button type="button" onClick={()=>{ const sf:Record<number,(keyof FormData)[]>={1:['name','phone','email','address'],2:['make','model','year'],3:['date']}; touchStep(sf[step]??[]); const v=step===1?step1Valid:step===2?step2Valid:step3Valid; if(v)setStep(s=>(s+1) as BookingStep); }} className="bg-amber-400 text-zinc-950 font-bold px-8 py-3 rounded-xl hover:bg-amber-300 transition-all duration-200 flex items-center gap-2">Continue <ChevronRight className="h-4 w-4"/></button>
+                    <button type="button" onClick={()=>{ const sf:Record<number,(keyof FormData)[]>={1:['name','phone','email','address'],2:['make','model','year'],3:['date']}; touchStep(sf[step]??[]); const v=step===1?step1Valid:step===2?step2Valid:step3Valid; if(v)setStep(s=>(s+1) as BookingStep); }} className="bg-blue-600 text-white font-bold px-8 py-3 rounded-xl hover:bg-blue-500 transition-all duration-200 flex items-center gap-2">Continue <ChevronRight className="h-4 w-4"/></button>
                   ):(
-                    <button type="submit" className="bg-amber-400 text-zinc-950 font-bold px-8 py-3 rounded-xl hover:bg-amber-300 transition-all duration-200 flex items-center gap-2">Confirm Booking <CheckCircle className="h-4 w-4"/></button>
+                    <button type="submit" className="bg-blue-600 text-white font-bold px-8 py-3 rounded-xl hover:bg-blue-500 transition-all duration-200 flex items-center gap-2">Confirm Booking <CheckCircle className="h-4 w-4"/></button>
                   )}
                 </div>
               </form>
@@ -476,15 +369,92 @@ export default function App() {
         </div>
       </section>
 
+      <section id="how-it-works" className="py-24 bg-zinc-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <p className="text-blue-500 text-sm font-bold uppercase tracking-widest mb-3">Simple Process</p>
+            <h2 className="text-4xl font-extrabold mb-4">How It Works</h2>
+            <p className="text-zinc-400 text-lg">Three easy steps to crystal-clear headlights.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {step:'01',icon:Calendar,title:'Book Online',desc:"Pick a date and time that works for you. We'll confirm within the hour."},
+              {step:'02',icon:Car,title:'We Come to You',desc:'Our technician arrives at your home or office anywhere in Ottawa, no drop-off needed.'},
+              {step:'03',icon:Sparkles,title:'Drive Clear',desc:'In under 90 minutes, your headlights are restored and protected. Safer driving starts today.'},
+            ].map(({step,icon:Icon,title,desc})=>(
+              <div key={step} className="relative bg-zinc-900 border border-zinc-800 rounded-2xl p-8 text-center hover:border-blue-500/30 transition-colors">
+                <div className="text-5xl font-extrabold text-zinc-800 mb-4 leading-none">{step}</div>
+                <div className="w-14 h-14 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto mb-5"><Icon className="h-6 w-6 text-blue-500"/></div>
+                <h3 className="text-xl font-bold mb-3">{title}</h3>
+                <p className="text-zinc-400 leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 bg-zinc-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <p className="text-blue-500 text-sm font-bold uppercase tracking-widest mb-3">Why Ottawa Chooses Us</p>
+            <h2 className="text-4xl font-extrabold mb-6 leading-tight">Ottawa's Best.<br/>At Your Front Door.</h2>
+            <p className="text-zinc-400 text-lg leading-relaxed mb-8">Foggy headlights reduce light output by up to 80%, making night driving significantly more dangerous. We use a 5-step professional restoration system, the same process used by auto dealerships, and come directly to you.</p>
+            <div className="space-y-4">
+              {[
+                {title:'Fully Mobile Service',desc:'We serve your driveway, parking lot, or office, anywhere in Ottawa.'},
+                {title:'Professional-Grade Results',desc:'5-step system: sanding, polishing, and UV-protective coating for long-lasting clarity.'},
+                {title:'Transparent Pricing',desc:'No hidden fees. What you see is what you pay, always.'},
+                {title:'Satisfaction Guaranteed',desc:"Not satisfied? We'll redo it free. Your clarity is our reputation."},
+              ].map(({title,desc})=>(
+                <div key={title} className="flex gap-4">
+                  <div className="w-6 h-6 rounded-full bg-blue-500/20 border border-blue-500/40 flex items-center justify-center flex-shrink-0 mt-0.5"><CheckCircle className="h-3.5 w-3.5 text-blue-500"/></div>
+                  <div><p className="font-semibold text-white">{title}</p><p className="text-zinc-400 text-sm mt-0.5">{desc}</p></div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            {[{value:'200+',label:'Vehicles Restored'},{value:'4.8★',label:'Average Rating'},{value:'2-3yr',label:'Coating Lifespan'},{value:'$0',label:'Travel Fee'}].map(({value,label})=>(
+              <div key={label} className="bg-zinc-800 border border-zinc-700 rounded-2xl p-8 text-center hover:border-blue-500/30 transition-colors">
+                <div className="text-4xl font-extrabold text-blue-500 mb-2">{value}</div>
+                <div className="text-zinc-400 text-sm">{label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="reviews" className="py-24 bg-zinc-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <p className="text-blue-500 text-sm font-bold uppercase tracking-widest mb-3">Testimonials</p>
+            <h2 className="text-4xl font-extrabold mb-4">What Ottawa Drivers Say</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {name:'Michael T.',location:'Kanata, ON',text:"Couldn't believe the difference. My 2015 Civic's headlights look brand new. The tech was on time, professional, and done in under an hour. Highly recommend."},
+              {name:'Sarah L.',location:'Barrhaven, ON',text:'Was about to spend $600 on replacement headlights. This cost me $99 and the results are identical. Will be telling everyone I know about this service.'},
+              {name:'David M.',location:'Orleans, ON',text:"Super convenient having them come to the house. My 2018 RAV4 lenses were severely yellowed and now they're crystal clear. Great value and great service."},
+            ].map(({name,location,text})=>(
+              <div key={name} className="bg-zinc-900 border border-zinc-800 rounded-2xl p-7 hover:border-blue-500/20 transition-colors">
+                <div className="flex items-center gap-1 mb-4">{[...Array(5)].map((_,i)=>(<Star key={i} className="h-4 w-4 fill-blue-500 text-blue-500"/>))}</div>
+                <p className="text-zinc-300 leading-relaxed mb-6">"{text}"</p>
+                <div><p className="font-semibold text-white">{name}</p><p className="text-zinc-500 text-sm flex items-center gap-1"><MapPin className="h-3 w-3"/> {location}</p></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="faq" className="py-24 bg-zinc-950">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16"><p className="text-amber-400 text-sm font-bold uppercase tracking-widest mb-3">FAQ</p><h2 className="text-4xl font-extrabold mb-4">Common Questions</h2></div>
+          <div className="text-center mb-16"><p className="text-blue-500 text-sm font-bold uppercase tracking-widest mb-3">FAQ</p><h2 className="text-4xl font-extrabold mb-4">Common Questions</h2></div>
           <div className="space-y-3">
             {faqs.map((faq,i)=>(
               <div key={i} className="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden hover:border-zinc-700 transition-colors">
                 <button onClick={()=>setOpenFaq(openFaq===i?null:i)} className="w-full flex items-center justify-between px-6 py-5 text-left">
                   <span className="font-semibold text-white pr-4">{faq.q}</span>
-                  {openFaq===i?<ChevronUp className="h-5 w-5 text-amber-400 flex-shrink-0"/>:<ChevronDown className="h-5 w-5 text-zinc-500 flex-shrink-0"/>}
+                  {openFaq===i?<ChevronUp className="h-5 w-5 text-blue-500 flex-shrink-0"/>:<ChevronDown className="h-5 w-5 text-zinc-500 flex-shrink-0"/>}
                 </button>
                 {openFaq===i&&(<div className="px-6 pb-5 text-zinc-400 leading-relaxed border-t border-zinc-800 pt-4">{faq.a}</div>)}
               </div>
@@ -493,14 +463,14 @@ export default function App() {
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-r from-amber-500 to-amber-400 relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-r from-blue-800 to-blue-600 relative overflow-hidden">
         <div className="absolute inset-0 bg-black/10"/>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-extrabold text-zinc-950 mb-4">Ready for Crystal-Clear Headlights?</h2>
-          <p className="text-zinc-800 text-lg mb-8">Ottawa's best headlight restoration, at your door. Book online or call us today.</p>
+          <h2 className="text-4xl font-extrabold text-white mb-4">Ready for Crystal-Clear Headlights?</h2>
+          <p className="text-blue-100 text-lg mb-8">Ottawa's best headlight restoration, at your door. Book online or call us today.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#booking" className="bg-zinc-950 text-white font-bold px-8 py-4 rounded-xl hover:bg-zinc-800 transition-all duration-200 hover:scale-105 flex items-center justify-center gap-2"><Calendar className="h-5 w-5"/> Book Online</a>
-            <a href={PHONE_HREF} className="border-2 border-zinc-950 text-zinc-950 font-bold px-8 py-4 rounded-xl hover:bg-zinc-950/10 transition-all duration-200 flex items-center justify-center gap-2"><Phone className="h-5 w-5"/> {PHONE}</a>
+            <a href={PHONE_HREF} className="border-2 border-white text-white font-bold px-8 py-4 rounded-xl hover:bg-white/10 transition-all duration-200 flex items-center justify-center gap-2"><Phone className="h-5 w-5"/> {PHONE}</a>
           </div>
         </div>
       </section>
@@ -514,18 +484,18 @@ export default function App() {
             </div>
             <div>
               <h4 className="font-bold text-white mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-zinc-500 text-sm">{navLinks.map(l=>(<li key={l.href}><a href={l.href} className="hover:text-amber-400 transition-colors">{l.label}</a></li>))}</ul>
+              <ul className="space-y-2 text-zinc-500 text-sm">{navLinks.map(l=>(<li key={l.href}><a href={l.href} className="hover:text-blue-500 transition-colors">{l.label}</a></li>))}</ul>
             </div>
             <div>
               <h4 className="font-bold text-white mb-4">Contact</h4>
               <div className="space-y-3 text-sm">
-                <a href={PHONE_HREF} className="flex items-center gap-2 text-zinc-400 hover:text-amber-400 transition-colors"><Phone className="h-4 w-4 text-amber-400"/> {PHONE}</a>
-                <div className="flex items-start gap-2 text-zinc-400"><MapPin className="h-4 w-4 text-amber-400 mt-0.5 flex-shrink-0"/><span>Ottawa, ON & surrounding area<br/>Kanata · Barrhaven · Orleans · Nepean · Gloucester</span></div>
-                <div className="flex items-center gap-2 text-zinc-400"><Clock className="h-4 w-4 text-amber-400"/>Mon-Sat · 8:00 AM - 6:00 PM</div>
+                <a href={PHONE_HREF} className="flex items-center gap-2 text-zinc-400 hover:text-blue-500 transition-colors"><Phone className="h-4 w-4 text-blue-500"/> {PHONE}</a>
+                <div className="flex items-start gap-2 text-zinc-400"><MapPin className="h-4 w-4 text-blue-500 mt-0.5 flex-shrink-0"/><span>Ottawa, ON & surrounding area<br/>Kanata · Barrhaven · Orleans · Nepean · Gloucester</span></div>
+                <div className="flex items-center gap-2 text-zinc-400"><Clock className="h-4 w-4 text-blue-500"/>Mon-Sat · 8:00 AM - 6:00 PM</div>
               </div>
             </div>
           </div>
-          <div className="border-t border-zinc-800 pt-8 text-center text-zinc-600 text-sm">© {new Date().getFullYear()} Shine My Lights Headlight Restoration. All rights reserved.</div>
+          <div className="border-t border-zinc-800 pt-8 text-center text-zinc-600 text-sm">© {new Date().getFullYear()} PureVision Auto Headlight Restoration. All rights reserved.</div>
         </div>
       </footer>
     </div>
