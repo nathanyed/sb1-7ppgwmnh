@@ -339,7 +339,7 @@ export default function App() {
                         {timeSlots.map(t=>(<button key={t} type="button" onClick={()=>update('time',t)} className={`py-2.5 rounded-lg text-sm font-medium transition-all ${form.time===t?'bg-blue-600 text-white':'bg-zinc-700 text-zinc-300 hover:bg-zinc-600'}`}>{t}</button>))}
                       </div>
                     </div>
-                    <div className="bg-blue-500/5 border border-blue-500/20 rounded-xl p-4 text-sm text-zinc-400"><Zap className="h-4 w-4 text-blue-500 inline mr-2"/>We'll confirm your exact appointment within 1 hour of booking.</div>
+                    <div className="bg-blue-500/5 border border-blue-500/20 rounded-xl p-4 text-sm text-zinc-400"><Zap className="h-4 w-4 text-blue-500 inline mr-2"/>We'll confirm your exact appointment within 30 minutes of booking.</div>
                   </div>
                 )}
                 {step===4&&(
@@ -398,7 +398,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <p className="text-blue-500 text-sm font-bold uppercase tracking-widest mb-3">Why Ottawa Chooses Us</p>
-            <h2 className="text-4xl font-extrabold mb-6 leading-tight">Ottawa's Best.<br/>At Your Front Door.</h2>
+            <h2 className="text-4xl font-extrabold mb-6 leading-tight">Ottawa's most trusted.<br/>At Your Front Door.</h2>
             <p className="text-zinc-400 text-lg leading-relaxed mb-8">Foggy headlights reduce light output by up to 80%, making night driving significantly more dangerous. We use a 5-step professional restoration system, the same process used by auto dealerships, and come directly to you.</p>
             <div className="space-y-4">
               {[
@@ -468,7 +468,7 @@ export default function App() {
         <div className="absolute inset-0 bg-black/10"/>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-extrabold text-white mb-4">Ready for Crystal-Clear Headlights?</h2>
-          <p className="text-blue-100 text-lg mb-8">Ottawa's best headlight restoration, at your door. Book online or call us today.</p>
+          <p className="text-blue-100 text-lg mb-8">Ottawa's most trusted headlight restoration, at your door. Book online or call us today.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#booking" className="bg-zinc-950 text-white font-bold px-8 py-4 rounded-xl hover:bg-zinc-800 transition-all duration-200 hover:scale-105 flex items-center justify-center gap-2"><Calendar className="h-5 w-5"/> Book Online</a>
             <a href={PHONE_HREF} className="border-2 border-white text-white font-bold px-8 py-4 rounded-xl hover:bg-white/10 transition-all duration-200 flex items-center justify-center gap-2"><Phone className="h-5 w-5"/> {PHONE}</a>
@@ -481,7 +481,7 @@ export default function App() {
           <div className="grid md:grid-cols-3 gap-8 mb-10">
             <div>
               <div className="flex items-center gap-2 mb-4"><img src="/logo.png" alt="logo" className="h-8 w-auto"/></div>
-              <p className="text-zinc-500 text-sm leading-relaxed">Ottawa's best mobile headlight restoration. We come to you, anywhere in the Ottawa area.</p>
+              <p className="text-zinc-500 text-sm leading-relaxed">Ottawa's most trusted mobile headlight restoration. We come to you, anywhere in the Ottawa area.</p>
             </div>
             <div>
               <h4 className="font-bold text-white mb-4">Quick Links</h4>
