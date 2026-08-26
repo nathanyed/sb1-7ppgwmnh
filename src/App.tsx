@@ -317,7 +317,7 @@ export default function App() {
                     <div>
                       <label className="block text-sm font-medium text-zinc-400 mb-3">What needs restoring?</label>
                       <div className="grid grid-cols-2 gap-3">
-                        {[{value:'1',label:'1 Headlight',price:'$59'},{value:'2',label:'2 Headlights',price:'$79'}].map(opt=>(
+                        {[{value:'1',label:'1 Headlight',price:'$59'},{value:'2',label:'2 Headlights',price:'$89'}].map(opt=>(
                           <label key={opt.value} className={`cursor-pointer rounded-xl border p-4 text-center transition-all ${form.headlights===opt.value?'border-blue-500 bg-blue-500/10':'border-zinc-600 hover:border-zinc-500'}`}>
                             <input type="radio" name="headlights" value={opt.value} checked={form.headlights===opt.value} onChange={()=>update('headlights',opt.value)} className="sr-only"/>
                             <div className="font-semibold text-sm text-white mb-1">{opt.label}</div>
@@ -492,7 +492,7 @@ export default function App() {
               <div className="space-y-3 text-sm">
                 <a href={PHONE_HREF} className="flex items-center gap-2 text-zinc-400 hover:text-blue-500 transition-colors"><Phone className="h-4 w-4 text-blue-500"/> {PHONE}</a>
                 <div className="flex items-start gap-2 text-zinc-400"><MapPin className="h-4 w-4 text-blue-500 mt-0.5 flex-shrink-0"/><span>Ottawa, ON & surrounding area<br/>Kanata · Barrhaven · Orleans · Nepean · Gloucester</span></div>
-                <div className="flex items-center gap-2 text-zinc-400"><Clock className="h-4 w-4 text-blue-500"/>Mon-Sat · 8:00 AM - 6:00 PM</div>
+                <div className="flex items-center gap-2 text-zinc-400"><Clock className="h-4 w-4 text-blue-500"/>Mon-Sun · 6:00 AM - 7:00 PM</div>
               </div>
             </div>
           </div>
